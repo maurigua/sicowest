@@ -10,7 +10,7 @@ window.onerror = function(msg, src, line, col, err) {
     box.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#7f0000;color:#fff;font-size:11px;padding:8px 12px;font-family:monospace;white-space:pre-wrap;word-break:break-all;max-height:40vh;overflow-y:auto';
     document.body.appendChild(box);
   }
-  box.textContent += '\n❌ ' + msg + '\n  @ line ' + line + ':' + col;
+  box.textContent += '\nâŒ ' + msg + '\n  @ line ' + line + ':' + col;
   return false;
 };
 </script>
@@ -19,7 +19,7 @@ window.onerror = function(msg, src, line, col, err) {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#000000">
-<title>Gestione Veicoli – Sicilia Ovest</title>
+<title>Gestione Veicoli â€“ Sicilia Ovest</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -35,7 +35,7 @@ window.onerror = function(msg, src, line, col, err) {
     <label class="login-label">CID Aziendale</label>
     <input class="login-input" type="tel" id="loginCid" placeholder="" autocomplete="off" inputmode="numeric">
     <label class="login-label">PIN Accesso</label>
-    <input class="login-input" type="password" id="loginPin" placeholder="••••" autocomplete="off" inputmode="numeric" maxlength="8"
+    <input class="login-input" type="password" id="loginPin" placeholder="â€¢â€¢â€¢â€¢" autocomplete="off" inputmode="numeric" maxlength="8"
       onkeydown="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">Accedi</button>
     <div class="login-err" id="loginErr"></div>
@@ -58,14 +58,14 @@ window.onerror = function(msg, src, line, col, err) {
       </div>
       <div class="header-right">
 
-        <div class="gear-btn" id="gearBtn" onclick="openGearMenu()" style="display:none">👤</div>
-        <button class="chevron-btn" onclick="openGearMenu()">▾</button>
+        <div class="gear-btn" id="gearBtn" onclick="openGearMenu()" style="display:none">ðŸ‘¤</div>
+        <button class="chevron-btn" onclick="openGearMenu()">â–¾</button>
       </div>
     </div>
 
     <!-- Stats row rimosso (contatori sostituiti dalla torta donut) -->
     <div id="statsRow" style="display:none">
-      <!-- statMarcianti, statOfficina, statScorta, statTotale mantenuti come elementi nascosti per compatibilità JS -->
+      <!-- statMarcianti, statOfficina, statScorta, statTotale mantenuti come elementi nascosti per compatibilitÃ  JS -->
       <span id="statMarcianti" style="display:none">0</span>
       <span id="statOfficina" style="display:none">0</span>
       <span id="statScorta" style="display:none">0</span>
@@ -83,9 +83,9 @@ window.onerror = function(msg, src, line, col, err) {
   <!-- BANNER GESTORE OP.: switch per visualizzazione intera flotta -->
   <div id="gestoreOpBanner" style="display:none;margin:10px 14px 0;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.3);border-radius:10px;padding:10px 14px">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-      <div style="font-size:12px;color:#a855f7;font-weight:700;letter-spacing:.5px">👁 GESTORE OP.</div>
+      <div style="font-size:12px;color:#a855f7;font-weight:700;letter-spacing:.5px">ðŸ‘ GESTORE OP.</div>
       <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none">
-        <span id="gestoreOpSwitchLabel" style="font-size:11px;color:var(--muted)">Solo mia attività</span>
+        <span id="gestoreOpSwitchLabel" style="font-size:11px;color:var(--muted)">Solo mia attivitÃ </span>
         <div id="gestoreOpSwitchTrack" onclick="toggleGestoreOpFlotta()" style="width:40px;height:22px;border-radius:11px;background:#333;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0">
           <div id="gestoreOpSwitchThumb" style="position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#888;transition:all .2s"></div>
         </div>
@@ -107,7 +107,7 @@ window.onerror = function(msg, src, line, col, err) {
   <div class="counter-section" id="counterSection">
     <div class="counter-hd">Contatore Flotta</div>
     <div class="counter-wrap">
-      <div class="counter-big" id="counterBig">—</div>
+      <div class="counter-big" id="counterBig">â€”</div>
       <div>
         <div class="counter-lbl">Veicoli Totale</div>
         <div class="counter-sub" id="counterSub"></div>
@@ -119,7 +119,7 @@ window.onerror = function(msg, src, line, col, err) {
   <div id="searchBar" class="searchbar" style="display:none">
     <div class="searchwrap">
       <div class="search-inner">
-        <span class="searchicon">🔍</span>
+        <span class="searchicon">ðŸ”</span>
         <input class="searchinput" id="searchInput" type="text" placeholder="Targa, nome, sede...">
       </div>
     </div>
@@ -137,19 +137,19 @@ window.onerror = function(msg, src, line, col, err) {
     <button class="fbtn" data-f="Speciali">Speciali</button>
   </div>
 
-  <!-- adminActions placeholder mantenuto per compatibilità JS -->
+  <!-- adminActions placeholder mantenuto per compatibilitÃ  JS -->
   <div id="adminActions" style="display:none"></div>
 
   <!-- REPORT / PRENOT / GPS / TOGGLE (admin) -->
   <div class="main" id="mainActions" style="display:none">
-    <button class="mie-prenot-btn" id="btnMiePrenot" onclick="openMiePrenot()">📋 Le mie prenotazioni <span class="prenot-badge-count" id="prenotCount">0</span></button>
-    <button class="gps-btn" id="btnMappaFlotta" onclick="openVisioneGlobale()" style="display:none;background:rgba(168,85,247,.1);color:#a855f7;border-color:rgba(168,85,247,.4)">🗺️ Mappa Flotta</button>
+    <button class="mie-prenot-btn" id="btnMiePrenot" onclick="openMiePrenot()">ðŸ“‹ Le mie prenotazioni <span class="prenot-badge-count" id="prenotCount">0</span></button>
+    <button class="gps-btn" id="btnMappaFlotta" onclick="openVisioneGlobale()" style="display:none;background:rgba(168,85,247,.1);color:#a855f7;border-color:rgba(168,85,247,.4)">ðŸ—ºï¸ Mappa Flotta</button>
     <div class="gps-result" id="gpsResult">
       <div class="gps-address" id="gpsAddress"></div>
       <div class="gps-coords" id="gpsCoords"></div>
-      <a class="gps-maps-link" id="gpsMapsLink" href="#" target="_blank">🗺️ Apri in Maps</a>
+      <a class="gps-maps-link" id="gpsMapsLink" href="#" target="_blank">ðŸ—ºï¸ Apri in Maps</a>
     </div>
-    <button class="toggle-btn" id="btnToggleList" onclick="toggleList()" style="display:none">🚗 Mostra veicoli</button>
+    <button class="toggle-btn" id="btnToggleList" onclick="toggleList()" style="display:none">ðŸš— Mostra veicoli</button>
     <!-- Hidden stubs required by V9 startApp -->
     <button id="btnReport" style="display:none" onclick="openReport()"></button>
   </div>
@@ -157,10 +157,10 @@ window.onerror = function(msg, src, line, col, err) {
   <!-- GUEST POOL BUTTONS -->
   <div class="main" id="poolBtnsGuest" style="display:none">
     <div class="pool-btns-guest">
-      <button class="pool-btn-speciali" onclick="openPoolSpeciali()">⭐ Pool Speciali</button>
-      <button class="pool-btn-tecnico" onclick="openPoolTecnico()">👷 Pool Tecnico</button>
+      <button class="pool-btn-speciali" onclick="openPoolSpeciali()">â­ Pool Speciali</button>
+      <button class="pool-btn-tecnico" onclick="openPoolTecnico()">ðŸ‘· Pool Tecnico</button>
     </div>
-    <button class="btn-scorta-guest" id="btnScortaGuest" onclick="openScortaGuest()">🔄 Prenota Scorta</button>
+    <button class="btn-scorta-guest" id="btnScortaGuest" onclick="openScortaGuest()">ðŸ”„ Prenota Scorta</button>
   </div>
 
   <!-- VEHICLE LIST -->
@@ -186,28 +186,28 @@ window.onerror = function(msg, src, line, col, err) {
   <!-- BOTTOM NAV (5 tabs) -->
   <div class="bottom-nav">
     <button class="bn-tab active" id="tab-home" onclick="goTab('home')">
-      <div class="bn-icon">🏠</div>Home
+      <div class="bn-icon">ðŸ </div>Home
     </button>
     <button class="bn-tab" id="tab-canc" onclick="goTab('canc')">
-      <div class="bn-icon">🗑️</div>Cancellate
+      <div class="bn-icon">ðŸ—‘ï¸</div>Cancellate
     </button>
     <button class="bn-tab" id="tab-cid" onclick="goTab('cid')">
-      <div class="bn-icon">👤</div>DB CID
+      <div class="bn-icon">ðŸ‘¤</div>DB CID
     </button>
     <button class="bn-tab" id="tab-allegati" onclick="goTab('allegati')" style="display:none">
-      <div class="bn-icon">📎</div>Allegati
+      <div class="bn-icon">ðŸ“Ž</div>Allegati
       <div class="bn-badge" id="bnAllegBadge" style="display:none">0</div>
     </button>
     <button class="bn-tab" id="tab-set" onclick="goTab('set')">
-      <div class="bn-icon">⚙️</div>Impostazioni
+      <div class="bn-icon">âš™ï¸</div>Impostazioni
     </button>
     <button class="bn-tab" id="tab-arrivo" onclick="goTab('arrivo')">
-      <div class="bn-icon">📦</div>In Arrivo
+      <div class="bn-icon">ðŸ“¦</div>In Arrivo
       <div class="bn-badge" id="bnArrBadge" style="display:none">0</div>
     </button>
   </div>
 <div class="overlay" id="ovVisioneGlobale"><div class="modal" style="max-height:96vh"><div class="mhandle"></div>
-  <div class="mtitle" style="color:#a855f7">🗺️ Visione Globale Flotta</div>
+  <div class="mtitle" style="color:#a855f7">ðŸ—ºï¸ Visione Globale Flotta</div>
   <!-- MAP CONTAINER -->
   <div id="vgMapContainer" style="position:relative;background:var(--surf2);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;overflow:hidden;height:220px">
     <svg id="vgMapSvg" viewBox="0 0 400 220" style="width:100%;height:100%" xmlns="http://www.w3.org/2000/svg">
@@ -239,7 +239,7 @@ window.onerror = function(msg, src, line, col, err) {
   <div id="vgSedeDetail" style="display:none;background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
       <span id="vgSedeTitle" style="font-family:Barlow Condensed,sans-serif;font-size:18px;font-weight:800;color:var(--acc)"></span>
-      <button onclick="document.getElementById('vgSedeDetail').style.display='none'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px">✕</button>
+      <button onclick="document.getElementById('vgSedeDetail').style.display='none'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px">âœ•</button>
     </div>
     <div id="vgSedeList"></div>
   </div>
@@ -248,87 +248,87 @@ window.onerror = function(msg, src, line, col, err) {
 </div></div>
 
 <div class="overlay" id="ovRientro"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--green)">✅ Torna Operativa</div>
+  <div class="mtitle" style="color:var(--green)">âœ… Torna Operativa</div>
   <div class="mtarga" id="rientroTarga"></div>
   <div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="rientroNome"></div>
   <div class="fg"><label class="fl">Note (opzionale)</label><textarea class="ft" id="rientroNote"></textarea></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-green" onclick="sendRientro()">✅ Conferma</button></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-green" onclick="sendRientro()">âœ… Conferma</button></div>
 </div></div>
 
 <div class="overlay" id="ovMenu"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle">🔧 Segnalazione</div>
+  <div class="mtitle">ðŸ”§ Segnalazione</div>
   <div class="mtarga" id="menuTarga"></div>
   <div class="menu-options">
-    <div class="menu-opt opt-tagliando" onclick="openTagliando()"><div class="menu-opt-icon">🛠️</div><div><div class="menu-opt-title" style="color:var(--blue)">Tagliando</div><div class="menu-opt-desc">Porta l'auto al tagliando</div></div></div>
-    <div class="menu-opt opt-guasto" onclick="openGuasto()"><div class="menu-opt-icon">⚠️</div><div><div class="menu-opt-title" style="color:var(--orange)">Guasto</div><div class="menu-opt-desc">Segnala un guasto</div></div></div>
-    <div class="menu-opt opt-incidente" onclick="openIncidente()"><div class="menu-opt-icon">🚨</div><div><div class="menu-opt-title" style="color:var(--red)">Incidente</div><div class="menu-opt-desc">Segnala un incidente</div></div></div>
+    <div class="menu-opt opt-tagliando" onclick="openTagliando()"><div class="menu-opt-icon">ðŸ› ï¸</div><div><div class="menu-opt-title" style="color:var(--blue)">Tagliando</div><div class="menu-opt-desc">Porta l'auto al tagliando</div></div></div>
+    <div class="menu-opt opt-guasto" onclick="openGuasto()"><div class="menu-opt-icon">âš ï¸</div><div><div class="menu-opt-title" style="color:var(--orange)">Guasto</div><div class="menu-opt-desc">Segnala un guasto</div></div></div>
+    <div class="menu-opt opt-incidente" onclick="openIncidente()"><div class="menu-opt-icon">ðŸš¨</div><div><div class="menu-opt-title" style="color:var(--red)">Incidente</div><div class="menu-opt-desc">Segnala un incidente</div></div></div>
   </div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovTagliando"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--blue)">🛠️ Tagliando</div>
+  <div class="mtitle" style="color:var(--blue)">ðŸ› ï¸ Tagliando</div>
   <div class="mtarga" id="tagliandoTarga"></div>
   <div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="tagliandoNome"></div>
   <div class="fg"><label class="fl">Officina</label><input class="fi" id="tagliandoOfficina"></div>
   <div class="divider"></div>
-  <div class="scorta-label">🔄 Auto sostitutive disponibili</div>
+  <div class="scorta-label">ðŸ”„ Auto sostitutive disponibili</div>
   <div id="scortaListT"></div>
-  <div class="sel-box" id="selBoxT"><div class="sel-box-title">✅ Sostitutiva selezionata</div><div class="sel-box-targa" id="selTargaT"></div></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-blue" id="tagliandoSubmit" disabled onclick="sendTagliando()">✅ Conferma</button></div>
+  <div class="sel-box" id="selBoxT"><div class="sel-box-title">âœ… Sostitutiva selezionata</div><div class="sel-box-targa" id="selTargaT"></div></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-blue" id="tagliandoSubmit" disabled onclick="sendTagliando()">âœ… Conferma</button></div>
 </div></div>
 
 <div class="overlay" id="ovGuasto"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--orange)">⚠️ Guasto</div>
+  <div class="mtitle" style="color:var(--orange)">âš ï¸ Guasto</div>
   <div class="mtarga" id="guastoTarga"></div>
   <div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="guastoNome" placeholder="Nome e Cognome"></div>
   <div class="fg"><label class="fl">Descrizione guasto</label><textarea class="ft" id="guastoDesc" placeholder="Descrivi il guasto..."></textarea></div>
-  <div class="fg"><label class="fl">Il guasto blocca il veicolo? ✱</label><select class="fs" id="guastoBloccante" onchange="onGuastoBloccante()"><option value="">Seleziona...</option><option value="no">No — Auto ancora utilizzabile</option><option value="si">Sì — Auto ferma, serve sostitutiva</option></select></div>
-  <div class="alert-box alert-den" id="guastoDenAlert" style="display:none"><div class="alert-icon">📋</div><div><div class="alert-title">Ricorda il DEN</div><div class="alert-text">Documento di Evento Negativo da compilare entro 24 ore.</div></div></div>
-  <div id="guastoBloccanteSection" style="display:none"><div class="scorta-label">🔄 Scegli sostitutiva</div><div id="scortaListG"></div><div class="sel-box" id="selBoxG"><div class="sel-box-title">✅ Sostitutiva</div><div class="sel-box-targa" id="selTargaG"></div></div></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-orange" onclick="sendGuasto()">⚠️ Segnala Guasto</button></div>
-  <div style="margin-top:10px"><button class="den-btn" onclick="openDen('guasto')">📋 Compila DEN</button></div>
+  <div class="fg"><label class="fl">Il guasto blocca il veicolo? âœ±</label><select class="fs" id="guastoBloccante" onchange="onGuastoBloccante()"><option value="">Seleziona...</option><option value="no">No â€” Auto ancora utilizzabile</option><option value="si">SÃ¬ â€” Auto ferma, serve sostitutiva</option></select></div>
+  <div class="alert-box alert-den" id="guastoDenAlert" style="display:none"><div class="alert-icon">ðŸ“‹</div><div><div class="alert-title">Ricorda il DEN</div><div class="alert-text">Documento di Evento Negativo da compilare entro 24 ore.</div></div></div>
+  <div id="guastoBloccanteSection" style="display:none"><div class="scorta-label">ðŸ”„ Scegli sostitutiva</div><div id="scortaListG"></div><div class="sel-box" id="selBoxG"><div class="sel-box-title">âœ… Sostitutiva</div><div class="sel-box-targa" id="selTargaG"></div></div></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-orange" onclick="sendGuasto()">âš ï¸ Segnala Guasto</button></div>
+  <div style="margin-top:10px"><button class="den-btn" onclick="openDen('guasto')">ðŸ“‹ Compila DEN</button></div>
 </div></div>
 
 <div class="overlay" id="ovIncidente"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--red)">🚨 Incidente</div>
+  <div class="mtitle" style="color:var(--red)">ðŸš¨ Incidente</div>
   <div class="mtarga" id="incTarga"></div>
   <div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="incNome" placeholder="Nome e Cognome"></div>
   <div class="fg"><label class="fl">Data e ora incidente</label><input class="fi" id="incData" type="datetime-local"></div>
-  <div class="fg"><button id="btnGpsInc" class="gps-inc-btn" onclick="gpsIncidente()">📍 Rileva posizione</button><div class="gps-inc-result" id="incGpsResult"></div></div>
-  <div class="fg"><label class="fl">Luogo (o conferma GPS)</label><input class="fi" id="incLuogo" placeholder="Via, città..."></div>
-  <div class="fg"><label class="fl">L'auto è bloccante? ✱</label><select class="fs" id="incBloccante" onchange="onIncBloccante()"><option value="">Seleziona...</option><option value="si">Sì — Auto non utilizzabile</option><option value="no">No — Auto ancora utilizzabile</option></select></div>
-  <div class="alert-box alert-leasys" id="incLeasysAlert" style="display:none"><div class="alert-icon">📞</div><div><div class="alert-title">Chiama Leasys subito!</div><div class="alert-text">Contatta Leasys per soccorso stradale e istruzioni.</div><a class="btn-leasys" href="tel:800959950">📞 Chiama 800 959 950</a></div></div>
-  <div class="alert-box alert-den" id="incDenAlert" style="display:none"><div class="alert-icon">📋</div><div><div class="alert-title">Compila il DEN</div><div class="alert-text">Documento di Evento Negativo entro 24 ore dall'incidente.</div></div></div>
-  <div id="incBloccanteSection" data-alias="incScortaWrap" style="display:none"><div class="scorta-label">🔄 Scegli sostitutiva</div><div id="scortaListI"></div><div class="sel-box" id="selBoxI"><div class="sel-box-title">✅ Sostitutiva</div><div class="sel-box-targa" id="selTargaI"></div></div><div id="incNoScortaWrap" style="display:none"><div class="referente-box"><div class="referente-title">⚠️ Nessuna Scorta</div><div class="referente-nome" id="refNome"></div><div class="referente-tel" id="refTel"></div><a class="btn-tel" id="refTelLink" href="#">📞 Chiama referente</a></div></div></div>
-  <div class="fg"><label class="fl">Descrizione dinamica ✱</label><textarea class="ft" id="incDesc" placeholder="Descrivi come è avvenuto, danni, terze parti..."></textarea></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-red" onclick="sendIncidente()">🚨 Segnala Incidente</button></div>
-  <div style="margin-top:10px"><button class="den-btn" onclick="openDen('incidente')">📋 Compila DEN</button></div>
+  <div class="fg"><button id="btnGpsInc" class="gps-inc-btn" onclick="gpsIncidente()">ðŸ“ Rileva posizione</button><div class="gps-inc-result" id="incGpsResult"></div></div>
+  <div class="fg"><label class="fl">Luogo (o conferma GPS)</label><input class="fi" id="incLuogo" placeholder="Via, cittÃ ..."></div>
+  <div class="fg"><label class="fl">L'auto Ã¨ bloccante? âœ±</label><select class="fs" id="incBloccante" onchange="onIncBloccante()"><option value="">Seleziona...</option><option value="si">SÃ¬ â€” Auto non utilizzabile</option><option value="no">No â€” Auto ancora utilizzabile</option></select></div>
+  <div class="alert-box alert-leasys" id="incLeasysAlert" style="display:none"><div class="alert-icon">ðŸ“ž</div><div><div class="alert-title">Chiama Leasys subito!</div><div class="alert-text">Contatta Leasys per soccorso stradale e istruzioni.</div><a class="btn-leasys" href="tel:800959950">ðŸ“ž Chiama 800 959 950</a></div></div>
+  <div class="alert-box alert-den" id="incDenAlert" style="display:none"><div class="alert-icon">ðŸ“‹</div><div><div class="alert-title">Compila il DEN</div><div class="alert-text">Documento di Evento Negativo entro 24 ore dall'incidente.</div></div></div>
+  <div id="incBloccanteSection" data-alias="incScortaWrap" style="display:none"><div class="scorta-label">ðŸ”„ Scegli sostitutiva</div><div id="scortaListI"></div><div class="sel-box" id="selBoxI"><div class="sel-box-title">âœ… Sostitutiva</div><div class="sel-box-targa" id="selTargaI"></div></div><div id="incNoScortaWrap" style="display:none"><div class="referente-box"><div class="referente-title">âš ï¸ Nessuna Scorta</div><div class="referente-nome" id="refNome"></div><div class="referente-tel" id="refTel"></div><a class="btn-tel" id="refTelLink" href="#">ðŸ“ž Chiama referente</a></div></div></div>
+  <div class="fg"><label class="fl">Descrizione dinamica âœ±</label><textarea class="ft" id="incDesc" placeholder="Descrivi come Ã¨ avvenuto, danni, terze parti..."></textarea></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-red" onclick="sendIncidente()">ðŸš¨ Segnala Incidente</button></div>
+  <div style="margin-top:10px"><button class="den-btn" onclick="openDen('incidente')">ðŸ“‹ Compila DEN</button></div>
 </div></div>
 
 <div class="overlay" id="ovMiePrenot"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--acc)">📋 Le mie prenotazioni</div>
+  <div class="mtitle" style="color:var(--acc)">ðŸ“‹ Le mie prenotazioni</div>
   <div id="miePrenoteList"></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovRilascio"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--green)">🔓 Rilascia Veicolo</div>
+  <div class="mtitle" style="color:var(--green)">ðŸ”“ Rilascia Veicolo</div>
   <div class="mtarga" id="rilascioTarga"></div>
   <div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="rilascioNome"></div>
   <div class="fg"><label class="fl">Note</label><textarea class="ft" id="rilascioNote"></textarea></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-green" onclick="sendRilascio()">🔓 Rilascia</button></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-green" onclick="sendRilascio()">ðŸ”“ Rilascia</button></div>
 </div></div>
 
 <div class="overlay" id="ovPin"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--acc)">⛽ PIN Carburante</div>
+  <div class="mtitle" style="color:var(--acc)">â›½ PIN Carburante</div>
   <div class="mtarga" id="pinModalTarga"></div>
   <div id="pinModalContent"></div>
   <div class="mbtns"><button class="bsub bsub-green" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovPinConferma"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--acc)">⛽ PIN Carburante</div>
+  <div class="mtitle" style="color:var(--acc)">â›½ PIN Carburante</div>
   <div class="msub" id="pinConfermaTitle"></div>
   <div id="pinConfermaContent"></div>
   <div class="mbtns"><button class="bsub bsub-green" onclick="closeAll()">OK</button></div>
@@ -341,24 +341,24 @@ window.onerror = function(msg, src, line, col, err) {
 </div></div>
 
 <div class="overlay" id="ovReport"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:#a855f7">📊 Report Flotta</div>
+  <div class="mtitle" style="color:#a855f7">ðŸ“Š Report Flotta</div>
   <div id="reportContent"></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovCancellate"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle">🗑️ Veicoli Cancellati</div>
+  <div class="mtitle">ðŸ—‘ï¸ Veicoli Cancellati</div>
   <input class="fi" id="cancSearch" placeholder="Filtra per targa..." oninput="renderCancellate()" style="margin-bottom:12px">
   <div id="cancellateList"></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovGear"><div class="modal"><div class="mhandle"></div>
-  <div class="conf-title" style="font-size:16px;margin-bottom:16px">⚙️ Menu</div>
+  <div class="conf-title" style="font-size:16px;margin-bottom:16px">âš™ï¸ Menu</div>
 
   <!-- Profilo -->
   <div style="background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px">
-    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">👤 Profilo</div>
+    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">ðŸ‘¤ Profilo</div>
     <div id="gearProfileName" style="font-size:15px;font-weight:700;color:var(--text)"></div>
     <div id="gearProfileCid" style="font-size:12px;color:var(--muted);font-family:monospace"></div>
     <div id="gearProfileSede" style="font-size:12px;color:var(--acc);margin-top:4px"></div>
@@ -366,41 +366,41 @@ window.onerror = function(msg, src, line, col, err) {
 
   <!-- Sede (cambia) -->
   <div id="gearSedeBtn" style="display:none;background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;cursor:pointer" onclick="changeSedeFromMenu()">
-    <div style="font-size:13px;color:var(--text)">📍 Cambia Sede</div>
+    <div style="font-size:13px;color:var(--text)">ðŸ“ Cambia Sede</div>
     <div style="font-size:11px;color:var(--muted);margin-top:2px" id="gearSedeLabel"></div>
   </div>
 
   <!-- Importa (solo admin) -->
   <div id="gearImportSection" style="display:none">
-    <button onclick="importFleetData();closeAll()" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surf2);color:var(--text);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px">📥 Importa Excel</button>
-    <button onclick="exportFleetData();closeAll()" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surf2);color:var(--text);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px">📤 Esporta Excel</button>
-    <button id="btnGestEP" onclick="closeAll();openGestioneEP()" style="width:100%;padding:12px 16px;border:1px solid rgba(40,167,69,.4);border-radius:12px;background:rgba(40,167,69,.08);color:#28a745;font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;display:none">🅿 Gestione EasyPark</button>
-    <button onclick="resetDatabase()" style="width:100%;padding:12px 16px;border:1px solid rgba(239,68,68,.4);border-radius:12px;background:rgba(239,68,68,.08);color:var(--red);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;margin-bottom:12px">🗑️ Reset DB (svuota tutto)</button>
+    <button onclick="importFleetData();closeAll()" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surf2);color:var(--text);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px">ðŸ“¥ Importa Excel</button>
+    <button onclick="exportFleetData();closeAll()" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surf2);color:var(--text);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px">ðŸ“¤ Esporta Excel</button>
+    <button id="btnGestEP" onclick="closeAll();openGestioneEP()" style="width:100%;padding:12px 16px;border:1px solid rgba(40,167,69,.4);border-radius:12px;background:rgba(40,167,69,.08);color:#28a745;font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;display:none">ðŸ…¿ Gestione EasyPark</button>
+    <button onclick="resetDatabase()" style="width:100%;padding:12px 16px;border:1px solid rgba(239,68,68,.4);border-radius:12px;background:rgba(239,68,68,.08);color:var(--red);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;margin-bottom:12px">ðŸ—‘ï¸ Reset DB (svuota tutto)</button>
   </div>
 
   <!-- Logout -->
-  <button onclick="closeAll();showLogoutConfirm()" style="width:100%;padding:12px 16px;border:1px solid rgba(239,68,68,.3);border-radius:12px;background:rgba(239,68,68,.08);color:var(--red);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;margin-bottom:4px">🚪 Esci</button>
+  <button onclick="closeAll();showLogoutConfirm()" style="width:100%;padding:12px 16px;border:1px solid rgba(239,68,68,.3);border-radius:12px;background:rgba(239,68,68,.08);color:var(--red);font-size:14px;text-align:left;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;margin-bottom:4px">ðŸšª Esci</button>
 
   <div class="mbtns" style="margin-top:6px;margin-bottom:-20px"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovBugiardino"><div class="modal"><div class="mhandle"></div>
-  <div class="conf-title">ℹ️ SicOvest V19</div>
+  <div class="conf-title">â„¹ï¸ SicOvest V19</div>
   <div style="font-size:13px;color:var(--muted);line-height:1.6;margin-top:12px">
-    <p style="margin-bottom:8px"><strong style="color:var(--text)">Versione:</strong> 9.0 — App standalone HTML</p>
-    <p style="margin-bottom:8px"><strong style="color:var(--text)">PIN 2024</strong> — Dipendenti e referenti (in anagrafica)</p>
-    <p style="margin-bottom:8px"><strong style="color:var(--text)">PIN 2025</strong> — Accesso ospite (sola visualizzazione)</p>
-    <p style="margin-bottom:8px"><strong style="color:var(--text)">Admin</strong> — Visione globale, import/export, gestione CID</p>
-    <p style="margin-bottom:8px"><strong style="color:var(--text)">Filtro Sede</strong> — Ogni utente vede solo i veicoli della propria sede</p>
-    <p style="color:var(--muted);font-size:11px;margin-top:12px">FiberCop · Sicilia Ovest · 2026</p>
+    <p style="margin-bottom:8px"><strong style="color:var(--text)">Versione:</strong> 9.0 â€” App standalone HTML</p>
+    <p style="margin-bottom:8px"><strong style="color:var(--text)">PIN 2024</strong> â€” Dipendenti e referenti (in anagrafica)</p>
+    <p style="margin-bottom:8px"><strong style="color:var(--text)">PIN 2025</strong> â€” Accesso ospite (sola visualizzazione)</p>
+    <p style="margin-bottom:8px"><strong style="color:var(--text)">Admin</strong> â€” Visione globale, import/export, gestione CID</p>
+    <p style="margin-bottom:8px"><strong style="color:var(--text)">Filtro Sede</strong> â€” Ogni utente vede solo i veicoli della propria sede</p>
+    <p style="color:var(--muted);font-size:11px;margin-top:12px">FiberCop Â· Sicilia Ovest Â· 2026</p>
   </div>
   <div class="mbtns" style="margin-top:16px"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovLogout"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle">🚪 Esci dall'app</div>
+  <div class="mtitle">ðŸšª Esci dall'app</div>
   <div class="msub">Vuoi davvero uscire?</div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub" style="background:var(--red);color:#fff" onclick="confirmLogout()">✖ Esci</button></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub" style="background:var(--red);color:#fff" onclick="confirmLogout()">âœ– Esci</button></div>
 </div></div>
 
 <div class="edit-modal-overlay" id="editModalOverlay">
@@ -427,7 +427,7 @@ window.onerror = function(msg, src, line, col, err) {
   <div class="em-field"><label>Tipo Veicolo</label><input id="em-tipo" placeholder="Modello veicolo" readonly style="opacity:.6;cursor:not-allowed;background:var(--card2)"></div>
   <div class="em-field"><label>Sede</label><input id="em-sede" placeholder="es. Palermo"></div>
   <div class="em-field"><label>Carburante</label><input id="em-carb-display" readonly style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:var(--rs);padding:9px 12px;color:var(--text);font-size:13px;opacity:.6;cursor:not-allowed"><select id="em-carb" style="display:none"><option value="">-- Seleziona --</option><option>Diesel</option><option>Benzina</option><option>GPL</option><option>Metano</option><option>Ibrido</option><option>Elettrico</option></select></div>
-  <div class="em-field"><label>Stato <span style="font-size:10px;color:var(--muted)">(Usa 🗑️ Cancella per rimuovere dalla flotta)</span></label><select id="em-stato"><option value="Marciante">Marciante</option><option value="Officina">🔧 Officina</option><option value="In arrivo">🚛 In arrivo</option></select></div>
+  <div class="em-field"><label>Stato <span style="font-size:10px;color:var(--muted)">(Usa ðŸ—‘ï¸ Cancella per rimuovere dalla flotta)</span></label><select id="em-stato"><option value="Marciante">Marciante</option><option value="Officina">ðŸ”§ Officina</option><option value="In arrivo">ðŸš› In arrivo</option></select></div>
   <div class="em-field"><label>Pool</label><select id="em-pool"><option value="Assegnata">Assegnata</option><option value="Scorta">Scorta</option><option value="Tecnico">Tecnico</option><option value="Speciali">Speciali</option></select></div>
   <div class="em-field"><label>Officina</label><input id="em-officina" placeholder="Nome officina"></div>
   <div class="em-field"><label>Data ingresso officina</label><input type="date" id="em-data-officina"></div>
@@ -439,67 +439,67 @@ window.onerror = function(msg, src, line, col, err) {
   <div class="em-field"><label>PIN Eni</label><input id="em-pin-eni" placeholder="0000"></div>
   <div class="em-field"><label>PIN Q8</label><input id="em-pin-q8" placeholder="0000"></div>
   <div class="em-field"><label>Note</label><input id="em-note" placeholder="Note libere"></div>
-  <div class="em-field"><label>ZTL (max 3 città)</label><div id="ztl-rows"></div><button class="btn-ztl-add" id="ztl-add-btn" onclick="addZtlRow()">+ Aggiungi città ZTL</button></div>
+  <div class="em-field"><label>ZTL (max 3 cittÃ )</label><div id="ztl-rows"></div><button class="btn-ztl-add" id="ztl-add-btn" onclick="addZtlRow()">+ Aggiungi cittÃ  ZTL</button></div>
   <div class="em-field"><label>Documenti PDF</label><div id="em-docs-list"></div><div style="margin-top:8px"><input type="file" id="em-doc-file" accept=".pdf" style="display:none" onchange="handleDocUpload(this)"><button class="btn-ztl-add" style="margin-top:0" onclick="document.getElementById('em-doc-file').click()">+ Carica PDF</button></div></div>
   <div style="margin-top:16px;padding:10px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:var(--rs)">
-    <div style="font-size:10px;color:var(--red);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">⚠️ Zona pericolosa</div>
-    <button class="em-save" style="background:var(--red);width:100%" onclick="cancellaVeicolo()">🗑️ Cancella veicolo dalla flotta</button>
+    <div style="font-size:10px;color:var(--red);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">âš ï¸ Zona pericolosa</div>
+    <button class="em-save" style="background:var(--red);width:100%" onclick="cancellaVeicolo()">ðŸ—‘ï¸ Cancella veicolo dalla flotta</button>
   </div>
   <div class="em-actions"><button class="em-cancel" onclick="closeEditModal()">Annulla</button><button class="em-save" onclick="saveEditModal()">Salva</button></div>
 </div>
 </div>
 
 <div class="overlay" id="ovSpeciali"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--blue)">⭐ Pool Speciali</div>
+  <div class="mtitle" style="color:var(--blue)">â­ Pool Speciali</div>
   <div class="fg"><label class="fl">Sede</label><select class="fs" id="specialiSede" onchange="renderPoolFiltered('Speciali','specialiSede','specialiList','prenotaBoxS')"><option value="">-- Scegli sede --</option><option>Agrigento</option><option>Palermo</option><option>Trapani</option><option>Sciacca</option><option>Caltanissetta</option></select></div>
   <div id="specialiList"></div>
-  <div class="prenota-box" id="prenotaBoxS"><div class="prenota-box-title">⭐ Prenota</div><div class="prenota-targa" id="prenotaTargaS"></div><div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="prenotaNomeS"></div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoS"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalS" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlS" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaS()">Annulla</button><button class="bsub bsub-blue" onclick="sendPrenotaPool('S')">⭐ Prenota</button></div></div>
+  <div class="prenota-box" id="prenotaBoxS"><div class="prenota-box-title">â­ Prenota</div><div class="prenota-targa" id="prenotaTargaS"></div><div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="prenotaNomeS"></div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoS"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalS" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlS" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaS()">Annulla</button><button class="bsub bsub-blue" onclick="sendPrenotaPool('S')">â­ Prenota</button></div></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovTecnico"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--orange)">👷 Pool Tecnico</div>
+  <div class="mtitle" style="color:var(--orange)">ðŸ‘· Pool Tecnico</div>
   <div class="fg"><label class="fl">Sede</label><select class="fs" id="tecnicoSede" onchange="renderPoolFiltered('Tecnico','tecnicoSede','tecnicoList','prenotaBoxT')"><option value="">-- Scegli sede --</option><option>Bagheria</option><option>Palermo</option><option>Trapani</option><option>Caltanissetta</option></select></div>
   <div id="tecnicoList"></div>
-  <div class="prenota-box" id="prenotaBoxT"><div class="prenota-box-title">👷 Prenota</div><div class="prenota-targa" id="prenotaTargaT"></div><div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="prenotaNomeT"></div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoT"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalT" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlT" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaT()">Annulla</button><button class="bsub bsub-orange" onclick="sendPrenotaPool('T')">👷 Prenota</button></div></div>
+  <div class="prenota-box" id="prenotaBoxT"><div class="prenota-box-title">ðŸ‘· Prenota</div><div class="prenota-targa" id="prenotaTargaT"></div><div class="fg"><label class="fl">Il tuo nome</label><input class="fi" id="prenotaNomeT"></div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoT"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalT" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlT" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaT()">Annulla</button><button class="bsub bsub-orange" onclick="sendPrenotaPool('T')">ðŸ‘· Prenota</button></div></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovScortaGuest"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:#a855f7">🔄 Pool Scorta</div>
+  <div class="mtitle" style="color:#a855f7">ðŸ”„ Pool Scorta</div>
   <div class="fg"><label class="fl">Sede</label><select class="fs" id="scortaGuestSede" onchange="renderScortaGuest()"><option value="">-- Scegli sede --</option><option>Agrigento</option><option>Palermo</option><option>Trapani</option><option>Sciacca</option><option>Caltanissetta</option></select></div>
   <div id="scortaGuestList"></div>
-  <div class="prenota-box" id="prenotaBoxSG"><div class="prenota-box-title">🔄 Prenota Scorta</div><div class="prenota-targa" id="prenotaTargaSG"></div><div class="prenota-3gg-note">⏰ Max 3 giorni in anticipo</div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoSG"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalSG" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlSG" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaSG()">Annulla</button><button class="bsub" style="background:#a855f7;color:#fff" onclick="sendPrenotaScortaGuest()">🔄 Prenota</button></div></div>
+  <div class="prenota-box" id="prenotaBoxSG"><div class="prenota-box-title">ðŸ”„ Prenota Scorta</div><div class="prenota-targa" id="prenotaTargaSG"></div><div class="prenota-3gg-note">â° Max 3 giorni in anticipo</div><div class="fg"><label class="fl">Motivazione</label><input class="fi" id="prenotaMotivoSG"></div><div class="fg"><label class="fl">Dal</label><input class="fi" id="prenotaDalSG" type="date"></div><div class="fg"><label class="fl">Al</label><input class="fi" id="prenotaAlSG" type="date"></div><div class="mbtns"><button class="bcx" onclick="chiudiPrenotaSG()">Annulla</button><button class="bsub" style="background:#a855f7;color:#fff" onclick="sendPrenotaScortaGuest()">ðŸ”„ Prenota</button></div></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovGuestTokens"><div class="modal"><div class="mhandle"></div>
-  <div class="conf-title">🔑 Token Ospiti</div>
-  <button class="token-gen-btn" onclick="adminGeneraToken()">➕ Genera nuovo token</button>
+  <div class="conf-title">ðŸ”‘ Token Ospiti</div>
+  <button class="token-gen-btn" onclick="adminGeneraToken()">âž• Genera nuovo token</button>
   <div id="tokenList"></div>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
 
 <div class="overlay" id="ovAggiungiSost"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--orange)">🔄 Ho una sostitutiva</div>
+  <div class="mtitle" style="color:var(--orange)">ðŸ”„ Ho una sostitutiva</div>
   <div class="fg"><label class="fl">Targa sostitutiva</label><input class="fi" id="sostTargaInput" placeholder="es. HB659AB" style="font-family:monospace;font-size:18px;font-weight:700"></div>
   <div id="sostPreview" style="display:none;background:var(--surf2);border-radius:10px;padding:12px;margin-bottom:12px"><div class="targa" id="sostPreviewTarga"></div><div id="sostPreviewTipo" style="font-size:12px;color:var(--muted)"></div></div>
-  <div id="sostNotFound" style="display:none;background:rgba(239,68,68,.1);border-radius:10px;padding:12px;margin-bottom:12px;color:var(--red)">⚠️ Targa non trovata</div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-orange" id="sostConfirmBtn" onclick="confermaSostitutiva()" disabled>🔄 Conferma</button></div>
+  <div id="sostNotFound" style="display:none;background:rgba(239,68,68,.1);border-radius:10px;padding:12px;margin-bottom:12px;color:var(--red)">âš ï¸ Targa non trovata</div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-orange" id="sostConfirmBtn" onclick="confermaSostitutiva()" disabled>ðŸ”„ Conferma</button></div>
 </div></div>
 
 <div class="overlay" id="ovDen"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--blue)">📋 DEN - Documento Evento Negativo</div>
-  <div class="den-section"><div class="den-section-title">📅 Data e Ora</div><div class="den-row"><div class="fg"><label class="fl">Giorno</label><input class="fi" id="denGiorno"></div><div class="fg"><label class="fl">Mese</label><input class="fi" id="denMese"></div><div class="fg"><label class="fl">Anno</label><input class="fi" id="denAnno"></div><div class="fg"><label class="fl">Ora</label><input class="fi" id="denOra"></div></div><div class="fg"><label class="fl">Luogo</label><input class="fi" id="denLuogo"></div></div>
-  <div class="den-section"><div class="den-section-title">🚗 Veicolo Assicurato</div><div class="den-row"><div class="fg"><label class="fl">Targa</label><input class="fi" id="denTarga" readonly></div><div class="fg" style="flex:2"><label class="fl">Marca e Tipo</label><input class="fi" id="denMarca" readonly></div></div><div class="fg"><label class="fl">Conducente</label><input class="fi" id="denConducente"></div><div class="fg"><label class="fl">Indirizzo Conducente</label><input class="fi" id="denIndirizzo" placeholder="Via..."></div><div class="fg"><label class="fl">Telefono</label><input class="fi" id="denTelefono" placeholder="+39..." type="tel"></div><div class="fg"><label class="fl">KM</label><input class="fi" id="denKm"></div></div>
-  <div class="den-section" id="denSezioneB" style="display:none"><div class="den-section-title">🚗 Controparte</div><div class="den-row"><div class="fg"><label class="fl">Targa</label><input class="fi" id="denTargaB"></div><div class="fg" style="flex:2"><label class="fl">Marca</label><input class="fi" id="denMarcaB"></div></div><div class="den-row"><div class="fg"><label class="fl">Cognome</label><input class="fi" id="denCognomeB"></div><div class="fg"><label class="fl">Nome</label><input class="fi" id="denNomeB"></div></div><div class="fg"><label class="fl">Indirizzo e Telefono</label><input class="fi" id="denIndirizzoB" placeholder="Via Roma 1, 06 123456"></div><div class="fg"><label class="fl">Compagnia Assicuratrice</label><input class="fi" id="denCompagniaB"></div><div class="fg"><label class="fl">Numero Polizza</label><input class="fi" id="denPolizzaB" placeholder="123456"></div><div class="fg"><label class="fl">Indirizzo Compagnia</label><input class="fi" id="denIndirizzoCompB" placeholder="Via..."></div></div>
-  <div class="den-section"><div class="den-section-title">📝 Descrizione</div><textarea class="ft" id="denNote"></textarea></div>
-  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-blue" id="denSubmitBtn" onclick="generaDen()">📋 Genera PDF</button></div>
+  <div class="mtitle" style="color:var(--blue)">ðŸ“‹ DEN - Documento Evento Negativo</div>
+  <div class="den-section"><div class="den-section-title">ðŸ“… Data e Ora</div><div class="den-row"><div class="fg"><label class="fl">Giorno</label><input class="fi" id="denGiorno"></div><div class="fg"><label class="fl">Mese</label><input class="fi" id="denMese"></div><div class="fg"><label class="fl">Anno</label><input class="fi" id="denAnno"></div><div class="fg"><label class="fl">Ora</label><input class="fi" id="denOra"></div></div><div class="fg"><label class="fl">Luogo</label><input class="fi" id="denLuogo"></div></div>
+  <div class="den-section"><div class="den-section-title">ðŸš— Veicolo Assicurato</div><div class="den-row"><div class="fg"><label class="fl">Targa</label><input class="fi" id="denTarga" readonly></div><div class="fg" style="flex:2"><label class="fl">Marca e Tipo</label><input class="fi" id="denMarca" readonly></div></div><div class="fg"><label class="fl">Conducente</label><input class="fi" id="denConducente"></div><div class="fg"><label class="fl">Indirizzo Conducente</label><input class="fi" id="denIndirizzo" placeholder="Via..."></div><div class="fg"><label class="fl">Telefono</label><input class="fi" id="denTelefono" placeholder="+39..." type="tel"></div><div class="fg"><label class="fl">KM</label><input class="fi" id="denKm"></div></div>
+  <div class="den-section" id="denSezioneB" style="display:none"><div class="den-section-title">ðŸš— Controparte</div><div class="den-row"><div class="fg"><label class="fl">Targa</label><input class="fi" id="denTargaB"></div><div class="fg" style="flex:2"><label class="fl">Marca</label><input class="fi" id="denMarcaB"></div></div><div class="den-row"><div class="fg"><label class="fl">Cognome</label><input class="fi" id="denCognomeB"></div><div class="fg"><label class="fl">Nome</label><input class="fi" id="denNomeB"></div></div><div class="fg"><label class="fl">Indirizzo e Telefono</label><input class="fi" id="denIndirizzoB" placeholder="Via Roma 1, 06 123456"></div><div class="fg"><label class="fl">Compagnia Assicuratrice</label><input class="fi" id="denCompagniaB"></div><div class="fg"><label class="fl">Numero Polizza</label><input class="fi" id="denPolizzaB" placeholder="123456"></div><div class="fg"><label class="fl">Indirizzo Compagnia</label><input class="fi" id="denIndirizzoCompB" placeholder="Via..."></div></div>
+  <div class="den-section"><div class="den-section-title">ðŸ“ Descrizione</div><textarea class="ft" id="denNote"></textarea></div>
+  <div class="mbtns"><button class="bcx" onclick="closeAll()">Annulla</button><button class="bsub bsub-blue" id="denSubmitBtn" onclick="generaDen()">ðŸ“‹ Genera PDF</button></div>
 </div></div>
 
 <div class="overlay" id="ovGestioneCid"><div class="modal" style="max-height:92vh;overflow-y:auto">
   <div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--acc)">🪪 Anagrafica CID</div>
+  <div class="mtitle" style="color:var(--acc)">ðŸªª Anagrafica CID</div>
   <div style="margin-bottom:12px;display:flex;gap:8px">
     <input class="fi" id="cidSearch" placeholder="Cerca CID o cognome..." oninput="renderCidList()" style="flex:1;font-size:13px;padding:9px 12px">
     <button class="bsub bsub-green" style="flex:0 0 auto;font-size:13px;padding:9px 14px" onclick="openNuovoCid()">+ Nuovo</button>
@@ -517,7 +517,7 @@ window.onerror = function(msg, src, line, col, err) {
   <div class="fg"><label class="fl">Nome</label><input class="fi" id="editCidNome" placeholder="Nome"></div>
   <div class="mbtns">
     <button class="bcx" onclick="closeEditCid()">Annulla</button>
-    <button class="bsub bsub-green" onclick="saveEditCid()">💾 Salva</button>
+    <button class="bsub bsub-green" onclick="saveEditCid()">ðŸ’¾ Salva</button>
   </div>
 </div></div>
 
@@ -586,7 +586,7 @@ function csvSplitLine(line) {
 
 async function loadFromGoogleSheets() {
   var btn = document.getElementById('gsheetsBtn');
-  if (btn) { btn.textContent = '⏳ Caricamento...'; btn.disabled = true; }
+  if (btn) { btn.textContent = 'â³ Caricamento...'; btn.disabled = true; }
   try {
     // Carica foglio DB auto
     var respDB = await fetch(gsheetsCsvUrl(GSHEETS_SHEETS.db));
@@ -594,7 +594,7 @@ async function loadFromGoogleSheets() {
     var rowsDB = parseCsv(await respDB.text());
     if (!rowsDB.length) throw new Error('Foglio DB vuoto');
 
-    // Riusa la logica già esistente di processExcelData ma con i dati JSON
+    // Riusa la logica giÃ  esistente di processExcelData ma con i dati JSON
     processRowsFromCloud(rowsDB, [], [], []);
 
     // Carica gli altri fogli in background (opzionale, non bloccante)
@@ -609,10 +609,10 @@ async function loadFromGoogleSheets() {
     } catch(e2) { /* fogli opzionali non trovati */ }
 
     localStorage.setItem('mf_last_cloud_sync', new Date().toISOString());
-    showToast('✅ DB aggiornato dal cloud: ' + FLEET.length + ' veicoli');
+    showToast('âœ… DB aggiornato dal cloud: ' + FLEET.length + ' veicoli');
   } catch(e) {
-    showToast('❌ Errore cloud: ' + e.message, true);
-    if (btn) { btn.textContent = '☁️ Aggiorna da Cloud'; btn.disabled = false; }
+    showToast('âŒ Errore cloud: ' + e.message, true);
+    if (btn) { btn.textContent = 'â˜ï¸ Aggiorna da Cloud'; btn.disabled = false; }
   }
 }
 
@@ -645,8 +645,8 @@ var REFERENTI = {
 var FLEET = [];
 var cancelledFleet = [];
 var runtime = {};
-var CID_LIST = [];   // {cid, cognome, nome} — caricata dall'Excel o localStorage
-var EP_LIST  = [];   // {targa, nome, cognome, telefono, email} — foglio EasyPark
+var CID_LIST = [];   // {cid, cognome, nome} â€” caricata dall'Excel o localStorage
+var EP_LIST  = [];   // {targa, nome, cognome, telefono, email} â€” foglio EasyPark
 var _editCidIndex = -1; // -1 = nuovo, >= 0 = modifica
 var userSede = null;     // Sede selezionata dall'utente al login
 var currentUser = null;
@@ -702,7 +702,7 @@ var AREA_EMAIL = {
   'gianfranco.mannone@fibercop.com':['Trapani','Alcamo','Marsala','Mazara del Vallo','Mazara Del Vall','Pantelleria'],
   'marco1.elmo@fibercop.com':['Palermo','Bagheria',"Cefalu'",'Corleone','Partinico','Rivoli'],
   'roberto.morgana@fibercop.com':['Caltanissetta','S. Cataldo','Mussomeli','Enna'],
-  'alfonso.marchica@fibercop.com':['Agrigento','Sciacca','Canicattì','Lampedusa E Linosa']
+  'alfonso.marchica@fibercop.com':['Agrigento','Sciacca','CanicattÃ¬','Lampedusa E Linosa']
 };
 var EMAIL_FOOTER = '\n\n---\nMyFleet Sicilia Ovest';
 var emailjsReady = false;
@@ -811,7 +811,7 @@ function renderZtlRows(ztl) {
   if (!c) return;
   var html = '';
   for (var i = 0; i < ztl.length; i++) {
-    html += '<div class="ztl-row" id="ztlrow' + i + '"><input placeholder="Città" value="' + escapeHtml(ztl[i].citta || '') + '" id="ztlc' + i + '"><input type="date" value="' + (ztl[i].scadenza || '') + '" id="ztld' + i + '"><button class="btn-ztl-del" onclick="delZtlRow(' + i + ')">x</button></div>';
+    html += '<div class="ztl-row" id="ztlrow' + i + '"><input placeholder="CittÃ " value="' + escapeHtml(ztl[i].citta || '') + '" id="ztlc' + i + '"><input type="date" value="' + (ztl[i].scadenza || '') + '" id="ztld' + i + '"><button class="btn-ztl-del" onclick="delZtlRow(' + i + ')">x</button></div>';
   }
   c.innerHTML = html;
   var addBtn = document.getElementById('ztl-add-btn');
@@ -823,7 +823,7 @@ function addZtlRow() {
   if (rows.length >= 3) return;
   var i = rows.length;
   var container = document.getElementById('ztl-rows');
-  container.insertAdjacentHTML('beforeend', '<div class="ztl-row" id="ztlrow' + i + '"><input placeholder="Città" id="ztlc' + i + '"><input type="date" id="ztld' + i + '"><button class="btn-ztl-del" onclick="delZtlRow(' + i + ')">x</button></div>');
+  container.insertAdjacentHTML('beforeend', '<div class="ztl-row" id="ztlrow' + i + '"><input placeholder="CittÃ " id="ztlc' + i + '"><input type="date" id="ztld' + i + '"><button class="btn-ztl-del" onclick="delZtlRow(' + i + ')">x</button></div>');
   if (i + 1 >= 3) { var ab = document.getElementById('ztl-add-btn'); if (ab) ab.style.display = 'none'; }
 }
 
@@ -1033,7 +1033,7 @@ function saveEditModal() {
 function cancellaVeicolo() {
   var v = findVehicle(editTarga);
   if (!v) return;
-  if (!confirm('Cancellare ' + v.targa + ' dalla flotta? Verrà spostato nelle cancellate.')) return;
+  if (!confirm('Cancellare ' + v.targa + ' dalla flotta? VerrÃ  spostato nelle cancellate.')) return;
   FLEET = FLEET.filter(function(x) { return x.targa !== v.targa; });
   var already = cancelledFleet.some(function(c) { return c.targa === v.targa; });
   if (!already) cancelledFleet.push({ targa: v.targa, tipo: v.tipo || '', cid: v.cid || '', note: v.note || null, deletedAt: new Date().toISOString().slice(0,10) });
@@ -1052,7 +1052,7 @@ function exportFleetData() {
     var dbCols = ['Targa','Cognome','Nome','Cid',"Stato dell'auto",'Tipologia pool','Sede',
       'Tipo veicolo','tipo carburante','Promemoria operativo','Officina',
       'data ingresso officina','data_inizio_noleggio','data_fine_noleggio_ca','scadenza_revisione',
-      'AOT Pro op.','C.le di riferimento pro op.','pin_enilive','pin_q8','ztl città','ztl fine'];
+      'AOT Pro op.','C.le di riferimento pro op.','pin_enilive','pin_q8','ztl cittÃ ','ztl fine'];
     var dbRows = [dbCols];
     for (var i = 0; i < FLEET.length; i++) {
       var v = FLEET[i];
@@ -1119,7 +1119,7 @@ function importFleetData() {
     if (!f) return;
     var r = new FileReader();
     r.onload = function(ev) { processExcelData(ev.target.result); };
-    r.onerror = function() { showToast('❌ File bloccato da Excel. Chiudi il file in Excel e riprova.', true); };
+    r.onerror = function() { showToast('âŒ File bloccato da Excel. Chiudi il file in Excel e riprova.', true); };
     r.readAsArrayBuffer(f);
   };
   input.click();
@@ -1178,7 +1178,7 @@ function processExcelData(arrayBuffer) {
       cle:              ['C.le di riferimento pro op.','C.le RICOVERO AUTO','Via c.le veicolo','cle'],
       pin_eni:          ['pin_enilive','pin_eni','Pin_enilive','pin enilive','PIN Enilive','PIN_enilive'],
       pin_q8:           ['pin_q8'],
-      ztl_citta:        ['ztl città','ztl citta','ztl_citta'],
+      ztl_citta:        ['ztl cittÃ ','ztl citta','ztl_citta'],
       ztl_fine:         ['ztl fine','ztl_fine'],
       ztl_richiesta:    ['ztl richiesta','ztl_richiesta']
     };
@@ -1230,8 +1230,8 @@ function processExcelData(arrayBuffer) {
       var ztlC = fr(row, COL_MAP.ztl_citta).toString().trim();
       var ztlF = fmtDate(fr(row, COL_MAP.ztl_fine));
       if (ztlC) {
-        // ztl_citta può contenere più città separate da -, /, ,
-        var cities = ztlC.split(/\s*[\-–\/,]\s*/);
+        // ztl_citta puÃ² contenere piÃ¹ cittÃ  separate da -, /, ,
+        var cities = ztlC.split(/\s*[\-â€“\/,]\s*/);
         var seenCities = {};
         for (var ci = 0; ci < cities.length; ci++) {
           var city = cities[ci].trim();
@@ -1308,7 +1308,7 @@ function processExcelData(arrayBuffer) {
         // Filtra intestazioni spurie in col H
         if (ruoloH === 'Profilo' || ruoloH.length > 30) ruoloH = '';
         var validRoles = ['Assegnatario','Ospite','Driver Aut.','Gestore Op.'];
-        // Priorità: col F se ruolo valido != Assegnatario, poi col H, poi Assegnatario
+        // PrioritÃ : col F se ruolo valido != Assegnatario, poi col H, poi Assegnatario
         var ruolo = 'Assegnatario';
         if (validRoles.indexOf(ruoloF) !== -1 && ruoloF !== 'Assegnatario') ruolo = ruoloF;
         else if (validRoles.indexOf(ruoloH) !== -1) ruolo = ruoloH;
@@ -1344,8 +1344,8 @@ function processExcelData(arrayBuffer) {
 
     var ritirati = imported.filter(function(v) { return v.stato === 'Ritirata' || v.stato === 'Ceduta'; });
     FLEET = imported.filter(function(v) { return v.stato !== 'Ritirata' && v.stato !== 'Ceduta'; });
-    // Preserva il runtime esistente (stato officina, pool in carico) — non azzerare
-    // Rimuovi solo le entry di targhe che non esistono più nella nuova flotta
+    // Preserva il runtime esistente (stato officina, pool in carico) â€” non azzerare
+    // Rimuovi solo le entry di targhe che non esistono piÃ¹ nella nuova flotta
     var newTarghe = {};
     FLEET.forEach(function(v) { newTarghe[v.targa] = true; });
     Object.keys(runtime).forEach(function(t) { if (!newTarghe[t]) delete runtime[t]; });
@@ -1376,7 +1376,7 @@ function renderCancellate() {
     return (c.targa + ' ' + (c.note||'') + ' ' + (c.tipo||'') + ' ' + (c.cid||'')).toLowerCase().includes(q);
   });
   if (filtered.length === 0) {
-    document.getElementById('cancellateList').innerHTML = '<div class="empty"><div class="empty-icon">🗑️</div><div>' + (search ? 'Nessun risultato per "'+escapeHtml(search)+'"' : 'Nessun veicolo cancellato') + '</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Usa ✏️ Modifica → 🗑️ Cancella per aggiungere targhe</div></div>';
+    document.getElementById('cancellateList').innerHTML = '<div class="empty"><div class="empty-icon">ðŸ—‘ï¸</div><div>' + (search ? 'Nessun risultato per "'+escapeHtml(search)+'"' : 'Nessun veicolo cancellato') + '</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Usa âœï¸ Modifica â†’ ðŸ—‘ï¸ Cancella per aggiungere targhe</div></div>';
     return;
   }
   var html = '<div style="font-size:11px;color:var(--muted);margin-bottom:8px">' + filtered.length + ' veicol' + (filtered.length===1?'o':'i') + ' cancellat' + (filtered.length===1?'o':'i') + '</div>';
@@ -1385,12 +1385,12 @@ function renderCancellate() {
     html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid var(--red)">';
     html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">';
     html += '<span class="targa" style="font-size:18px">' + escapeHtml(c.targa) + '</span>';
-    if (c.cid) html += '<span class="chip chip-util" style="font-family:monospace;font-size:11px">🪪 ' + escapeHtml(c.cid) + '</span>';
+    if (c.cid) html += '<span class="chip chip-util" style="font-family:monospace;font-size:11px">ðŸªª ' + escapeHtml(c.cid) + '</span>';
     html += '</div>';
     if (c.tipo) html += '<div style="font-size:12px;color:var(--muted);margin-bottom:4px">' + escapeHtml(c.tipo) + '</div>';
-    html += '<div style="font-size:12px;color:var(--text)">' + (c.note ? '📝 ' + escapeHtml(c.note) : '<span style="color:var(--muted)">Nessuna nota</span>') + '</div>';
+    html += '<div style="font-size:12px;color:var(--text)">' + (c.note ? 'ðŸ“ ' + escapeHtml(c.note) : '<span style="color:var(--muted)">Nessuna nota</span>') + '</div>';
     if (c.tipo) html += '<div style="font-size:11px;color:var(--muted);margin-top:2px">' + escapeHtml(c.tipo) + '</div>';
-    if (c.deletedAt) html += '<div style="font-size:10px;color:var(--muted);margin-top:4px">🗓 ' + escapeHtml(c.deletedAt) + '</div>';
+    if (c.deletedAt) html += '<div style="font-size:10px;color:var(--muted);margin-top:4px">ðŸ—“ ' + escapeHtml(c.deletedAt) + '</div>';
     html += '</div>';
   }
   document.getElementById('cancellateList').innerHTML = html;
@@ -1420,7 +1420,7 @@ function sendRientro() {
   runtime[v.targa].stato = nuovoStato;
   runtime[v.targa].assegnato_a = null;
   runtime[v.targa].rilasciato = false;
-  // Se è un veicolo pool, rimuove solo nome/cognome in memoria (non il CID)
+  // Se Ã¨ un veicolo pool, rimuove solo nome/cognome in memoria (non il CID)
   var _truePool2 = ['Scorta','Tecnico','Speciali'];
   if (_truePool2.indexOf(pool) !== -1) {
     v.cognome = '';
@@ -1459,7 +1459,7 @@ function sendRilascio() {
   else                          nuovoStato2 = 'Marciante';
   v.stato = nuovoStato2;
   runtime[v.targa].stato = nuovoStato2;
-  // Se è un veicolo pool, rimuove solo nome/cognome in memoria (non il CID)
+  // Se Ã¨ un veicolo pool, rimuove solo nome/cognome in memoria (non il CID)
   var _truePool = ['Scorta','Tecnico','Speciali'];
   if (_truePool.indexOf(pool) !== -1) {
     v.cognome = '';
@@ -1507,7 +1507,7 @@ function selectScorta(type, targa, el) {
   document.getElementById(boxId).style.display = 'block';
   if (type === 'T') document.getElementById('tagliandoSubmit').disabled = false;
 }
-// Wrapper di compatibilità per onclick nel HTML
+// Wrapper di compatibilitÃ  per onclick nel HTML
 function selectScortaT(targa, el) { selectScorta('T', targa, el); }
 function selectScortaG(targa, el) { selectScorta('G', targa, el); }
 function selectScortaI(targa, el) { selectScorta('I', targa, el); }
@@ -1604,7 +1604,7 @@ function sendReport(type) {
     }
   }, v.sede);
 }
-// Wrapper di compatibilità (chiamati da onclick nel HTML e da openTagliando/Guasto/Incidente)
+// Wrapper di compatibilitÃ  (chiamati da onclick nel HTML e da openTagliando/Guasto/Incidente)
 function sendTagliando()  { sendReport('tagliando'); }
 function sendGuasto()     { sendReport('guasto'); }
 function sendIncidente()  { sendReport('incidente'); }
@@ -1631,9 +1631,9 @@ function onGuastoBloccante() {
   }
 }
 
-// selectScortaG è ora un wrapper in selectScorta()
+// selectScortaG Ã¨ ora un wrapper in selectScorta()
 
-// sendGuasto è ora un wrapper per sendReport('guasto')
+// sendGuasto Ã¨ ora un wrapper per sendReport('guasto')
 
 function openIncidente() {
   closeAll();
@@ -1682,13 +1682,13 @@ function onIncBloccante() {
   }
 }
 
-// selectScortaI è ora un wrapper in selectScorta()
+// selectScortaI Ã¨ ora un wrapper in selectScorta()
 
-// sendIncidente è ora un wrapper per sendReport('incidente')
+// sendIncidente Ã¨ ora un wrapper per sendReport('incidente')
 
 function renderScortaInto(containerId, selectFn) {
   var sc = getScortaPerCitta(curVehicle.sede), html = '';
-  if (!sc.length) html = '<div class="no-scorta">🚗 Nessuna Scorta disponibile a ' + curVehicle.sede + '</div>';
+  if (!sc.length) html = '<div class="no-scorta">ðŸš— Nessuna Scorta disponibile a ' + curVehicle.sede + '</div>';
   else {
     for (var i = 0; i < sc.length; i++) {
       html += '<div class="scorta-card" onclick="' + selectFn + '(\'' + sc[i].targa + '\',this)"><div class="scorta-top"><span class="targa">' + sc[i].targa + '</span></div><div class="vtipo">' + sc[i].tipo + '</div></div>';
@@ -1718,18 +1718,18 @@ function updatePrenotBtn() {
 }
 function openMiePrenot() {
   var list = getPrenot(), html = '';
-  if (list.length === 0) html = '<div class="empty"><div class="empty-icon">📋</div><div>Nessuna prenotazione attiva</div></div>';
+  if (list.length === 0) html = '<div class="empty"><div class="empty-icon">ðŸ“‹</div><div>Nessuna prenotazione attiva</div></div>';
   else {
     for (var i = 0; i < list.length; i++) {
       var p = list[i];
       var ds = p.dal ? new Date(p.dal).toLocaleDateString('it-IT') : 'N/D';
       var as = p.al ? new Date(p.al).toLocaleDateString('it-IT') : 'aperta';
-      html += '<div class="mia-prenot-card"><div class="mia-prenot-top"><div><span class="targa">' + escapeHtml(p.targa) + '</span><div class="mia-prenot-date">Dal ' + ds + ' al ' + as + '</div></div><span class="badge badge-prenotata">📌 ' + p.pool + '</span></div>';
+      html += '<div class="mia-prenot-card"><div class="mia-prenot-top"><div><span class="targa">' + escapeHtml(p.targa) + '</span><div class="mia-prenot-date">Dal ' + ds + ' al ' + as + '</div></div><span class="badge badge-prenotata">ðŸ“Œ ' + p.pool + '</span></div>';
       html += '<div class="vtipo">' + escapeHtml(p.tipo) + '</div>';
-      if (p.motivo) html += '<div style="font-size:12px;color:var(--muted);margin-top:6px">📝 ' + escapeHtml(p.motivo) + '</div>';
+      if (p.motivo) html += '<div style="font-size:12px;color:var(--muted);margin-top:6px">ðŸ“ ' + escapeHtml(p.motivo) + '</div>';
       var bv = findVehicle(p.targa);
       if (bv) html += getPinHtml(bv);
-      html += '<div class="mia-prenot-actions"><button class="abtn abtn-cancel" onclick="cancelPrenot(\'' + p.targa + '\')">❌ Cancella</button></div></div>';
+      html += '<div class="mia-prenot-actions"><button class="abtn abtn-cancel" onclick="cancelPrenot(\'' + p.targa + '\')">âŒ Cancella</button></div></div>';
     }
   }
   document.getElementById('miePrenoteList').innerHTML = html;
@@ -1775,7 +1775,7 @@ function renderPoolFiltered(poolType, sedeId, listId, boxId) {
 var selectedPoolVehicle = null;
 // ---- REFACTORED: selezionaPool e chiudiPrenota unificati ----
 function selezionaPool(suffix, targa, el) {
-  if (isPrenotata(targa)) { showToast('Hai già prenotato questo veicolo', true); return; }
+  if (isPrenotata(targa)) { showToast('Hai giÃ  prenotato questo veicolo', true); return; }
   selectedPoolVehicle = findVehicle(targa);
   var listId = suffix === 'S' ? '#specialiList' : '#tecnicoList';
   document.querySelectorAll(listId + ' .pool-card').forEach(function(c) { c.style.borderColor = ''; });
@@ -1833,7 +1833,7 @@ function renderScortaGuest() {
   if (!scorta.length) { listEl.innerHTML = '<div class="no-scorta">Nessuna scorta disponibile</div>'; return; }
   var html = '<div class="scorta-label">Veicoli disponibili</div>';
   for (var i = 0; i < scorta.length; i++) {
-    html += '<div class="scorta-card" onclick="selezionaScortaGuest(\'' + scorta[i].targa + '\',this)"><div class="scorta-top"><span class="targa">' + scorta[i].targa + '</span><span class="badge badge-libera">✅ Libera</span></div><div class="vtipo">' + scorta[i].tipo + '</div></div>';
+    html += '<div class="scorta-card" onclick="selezionaScortaGuest(\'' + scorta[i].targa + '\',this)"><div class="scorta-top"><span class="targa">' + scorta[i].targa + '</span><span class="badge badge-libera">âœ… Libera</span></div><div class="vtipo">' + scorta[i].tipo + '</div></div>';
   }
   listEl.innerHTML = html;
 }
@@ -1875,7 +1875,7 @@ function renderTokenList() {
   var html = '';
   for (var i = 0; i < tokens.length; i++) {
     if (tokens[i].revoked) continue;
-    html += '<div class="token-card"><div><div class="token-card-code">' + tokens[i].code + '</div><div class="token-card-note">' + (tokens[i].nome ? 'Usato da: ' + tokens[i].nome : 'Non ancora usato') + '</div></div><button class="token-revoke-btn" onclick="adminRevokeToken(\'' + tokens[i].code + '\')">❌ Revoca</button></div>';
+    html += '<div class="token-card"><div><div class="token-card-code">' + tokens[i].code + '</div><div class="token-card-note">' + (tokens[i].nome ? 'Usato da: ' + tokens[i].nome : 'Non ancora usato') + '</div></div><button class="token-revoke-btn" onclick="adminRevokeToken(\'' + tokens[i].code + '\')">âŒ Revoca</button></div>';
   }
   listEl.innerHTML = html || '<div style="text-align:center;color:var(--muted);padding:16px">Tutti i token sono stati revocati</div>';
 }
@@ -1983,14 +1983,14 @@ function generaDen() {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       btn.disabled = false;
-      btn.textContent = '📋 Genera PDF';
+      btn.textContent = 'ðŸ“‹ Genera PDF';
       closeAll();
-      showToast('✅ DEN generato e scaricato');
+      showToast('âœ… DEN generato e scaricato');
     })
     .catch(function(e) {
       btn.disabled = false;
-      btn.textContent = '📋 Genera PDF';
-      showToast('❌ ' + e.message, true);
+      btn.textContent = 'ðŸ“‹ Genera PDF';
+      showToast('âŒ ' + e.message, true);
     });
 }
 
@@ -2017,35 +2017,35 @@ function rilevaPosizione(callback, onError) {
 }
 function gpsHomepage() {
   var btn = document.getElementById('btnGps');
-  btn.innerHTML = '⏳ Rilevamento...';
+  btn.innerHTML = 'â³ Rilevamento...';
   btn.disabled = true;
   rilevaPosizione(function(c) {
     btn.disabled = false;
-    btn.innerHTML = '📍 Aggiorna posizione';
+    btn.innerHTML = 'ðŸ“ Aggiorna posizione';
     document.getElementById('gpsResult').style.display = 'block';
     document.getElementById('gpsAddress').textContent = c.address;
     document.getElementById('gpsCoords').textContent = c.lat + ', ' + c.lng;
     document.getElementById('gpsMapsLink').href = 'https://maps.google.com/?q=' + c.lat + ',' + c.lng;
   }, function(e) {
     btn.disabled = false;
-    btn.innerHTML = '📍 Rileva posizione';
+    btn.innerHTML = 'ðŸ“ Rileva posizione';
     showToast(e, true);
   });
 }
 function gpsIncidente() {
   var btn = document.getElementById('btnGpsInc');
   if (!btn) return;
-  btn.innerHTML = '⏳ Rilevamento...';
+  btn.innerHTML = 'â³ Rilevamento...';
   btn.disabled = true;
   rilevaPosizione(function(c) {
     btn.disabled = false;
-    btn.innerHTML = '📍 Rileva posizione';
+    btn.innerHTML = 'ðŸ“ Rileva posizione';
     document.getElementById('incGpsResult').style.display = 'block';
     document.getElementById('incGpsResult').innerHTML = '<div>' + c.address + '</div><div style="font-family:monospace;margin-top:4px">' + c.lat + ', ' + c.lng + '</div>';
     document.getElementById('incLuogo').value = c.address;
   }, function(e) {
     btn.disabled = false;
-    btn.innerHTML = '📍 Rileva posizione';
+    btn.innerHTML = 'ðŸ“ Rileva posizione';
     showToast(e, true);
   });
 }
@@ -2069,8 +2069,8 @@ function renderStats() {
     _t('statUnicoNum', FLEET.length);
     _c('statUnicoNum', 'var(--acc)');
     _t('statUnicoLabel', 'VEICOLI IN FLOTTA');
-    var sub = m + ' marcianti · ' + o + ' officina · ' + s + ' scorta libere';
-    if (arr) sub += ' · ' + arr + ' in arrivo';
+    var sub = m + ' marcianti Â· ' + o + ' officina Â· ' + s + ' scorta libere';
+    if (arr) sub += ' Â· ' + arr + ' in arrivo';
     _t('statUnicoSub', sub);
   }
 }
@@ -2194,13 +2194,13 @@ function getFilteredForUser(all) {
     });
   }
 
-  // Fallback: ruolo non riconosciuto → lista vuota per sicurezza
+  // Fallback: ruolo non riconosciuto â†’ lista vuota per sicurezza
   return [];
 }
 
 function getPinHtml(v) {
   if (!v.pin_eni && !v.pin_q8) return '';
-  var h = '<div class="pin-box"><div class="pin-box-title">⛽ PIN Carburante</div><div class="pin-row">';
+  var h = '<div class="pin-box"><div class="pin-box-title">â›½ PIN Carburante</div><div class="pin-row">';
   if (v.pin_eni) h += '<div class="pin-item"><div class="pin-label">ENI Live</div><div class="pin-value">' + v.pin_eni + '</div></div>';
   if (v.pin_q8) h += '<div class="pin-item"><div class="pin-label">Q8</div><div class="pin-value">' + v.pin_q8 + '</div></div>';
   return h + '</div></div>';
@@ -2244,15 +2244,15 @@ function getVehicleCardHTML(v) {
   var rawStato = (v.stato || '').trim();
   var badgeLabel;
   if (isOff) {
-    badgeLabel = isUserCar ? '🔧 Tua auto in Officina' : '🔧 Officina';
+    badgeLabel = isUserCar ? 'ðŸ”§ Tua auto in Officina' : 'ðŸ”§ Officina';
   } else if (stato === 'In arrivo') {
-    badgeLabel = '🚛 In arrivo';
+    badgeLabel = 'ðŸš› In arrivo';
   } else if (stato === 'Marciante') {
     if (rawStato.indexOf('/') !== -1) {
-      badgeLabel = '✅ ' + rawStato.toUpperCase();
+      badgeLabel = 'âœ… ' + rawStato.toUpperCase();
     } else {
       var poolPart = (v.pool || '').trim();
-      badgeLabel = poolPart ? '✅ MARCIANTE/' + poolPart.toUpperCase() : '✅ MARCIANTE';
+      badgeLabel = poolPart ? 'âœ… MARCIANTE/' + poolPart.toUpperCase() : 'âœ… MARCIANTE';
     }
   } else {
     badgeLabel = escapeHtml(stato);
@@ -2265,12 +2265,12 @@ function getVehicleCardHTML(v) {
   if (v.sede && v.sede.trim()) {
     var city = v.sede.trim();
     if (city.indexOf(',') !== -1) city = city.split(',').pop().trim();
-    if (city) chips += '<span class="chip">📍 ' + escapeHtml(city) + '</span>';
+    if (city) chips += '<span class="chip">ðŸ“ ' + escapeHtml(city) + '</span>';
   }
   var hasEP = EP_LIST.some(function(e) { return e.targa === v.targa; });
-  if (hasEP) chips += '<span class="chip" style="color:#28a745;border-color:#28a745;background:rgba(40,167,69,.1);font-weight:700">🅿 EasyPark</span>';
+  if (hasEP) chips += '<span class="chip" style="color:#28a745;border-color:#28a745;background:rgba(40,167,69,.1);font-weight:700">ðŸ…¿ EasyPark</span>';
 
-  // Se è un veicolo pool con un utilizzatore runtime, mostra "in uso - Nome Cognome"
+  // Se Ã¨ un veicolo pool con un utilizzatore runtime, mostra "in uso - Nome Cognome"
   var rtChip = runtime[t];
   var inUsoName = '';
   if (rtChip && rtChip.assegnato_a && !rtChip.rilasciato) {
@@ -2278,23 +2278,23 @@ function getVehicleCardHTML(v) {
     inUsoName = (typeof rta === 'object') ? ((rta.cognome || '') + ' ' + (rta.nome || '')).trim() : (rta || '').trim();
   }
   if (inUsoName && v.pool) {
-    chips += '<span class="chip chip-user">🔄 in uso · ' + escapeHtml(inUsoName) + '</span>';
+    chips += '<span class="chip chip-user">ðŸ”„ in uso Â· ' + escapeHtml(inUsoName) + '</span>';
   } else {
     var intest = ((v.cognome || '') + ' ' + (v.nome || '')).trim();
-    if (intest) chips += '<span class="chip chip-user">👤 ' + escapeHtml(intest) + '</span>';
+    if (intest) chips += '<span class="chip chip-user">ðŸ‘¤ ' + escapeHtml(intest) + '</span>';
   }
-  if (v.cid && (isAdmin || cidMatches(v.cid, myCid))) chips += '<span class="chip chip-util" style="font-family:monospace;font-weight:700">🪪 ' + escapeHtml(v.cid) + '</span>';
+  if (v.cid && (isAdmin || cidMatches(v.cid, myCid))) chips += '<span class="chip chip-util" style="font-family:monospace;font-weight:700">ðŸªª ' + escapeHtml(v.cid) + '</span>';
 
   // Badge scadenze (revisione, noleggio, ZTL)
   if (v.scad_revisione) {
     var dR = new Date(v.scad_revisione), diffR = (dR - new Date()) / 86400000;
-    if (diffR < 0) chips += '<span class="ztl-badge expired">🔧 Rev. scaduta</span>';
-    else if (diffR <= 30) chips += '<span class="ztl-badge expiring">🔧 Rev. ' + displayDate(v.scad_revisione) + '</span>';
+    if (diffR < 0) chips += '<span class="ztl-badge expired">ðŸ”§ Rev. scaduta</span>';
+    else if (diffR <= 30) chips += '<span class="ztl-badge expiring">ðŸ”§ Rev. ' + displayDate(v.scad_revisione) + '</span>';
   }
   if (v.fine_noleggio) {
     var dN = new Date(v.fine_noleggio), diffN = (dN - new Date()) / 86400000;
-    if (diffN < 0) chips += '<span class="ztl-badge expired">📋 Noleggio scad.</span>';
-    else if (diffN <= 30) chips += '<span class="ztl-badge expiring">📋 Noleggio ' + displayDate(v.fine_noleggio) + '</span>';
+    if (diffN < 0) chips += '<span class="ztl-badge expired">ðŸ“‹ Noleggio scad.</span>';
+    else if (diffN <= 30) chips += '<span class="ztl-badge expiring">ðŸ“‹ Noleggio ' + displayDate(v.fine_noleggio) + '</span>';
   }
   if (v.ztl && v.ztl.length) {
     if (v.ztl.length > 1) console.warn('[ZTL DEBUG] ' + v.targa + ' ha ' + v.ztl.length + ' voci ZTL:', JSON.stringify(v.ztl));
@@ -2304,48 +2304,48 @@ function getVehicleCardHTML(v) {
       if (!_zk || _ztlSeen[_zk]) continue;
       _ztlSeen[_zk] = true;
       var zs = ztlStatus(v.ztl[z]);
-      chips += '<span class="ztl-badge ' + zs + '">ZTL ' + escapeHtml(v.ztl[z].citta) + (v.ztl[z].scadenza ? ' 📅 ' + displayDate(v.ztl[z].scadenza) : '') + '</span>';
+      chips += '<span class="ztl-badge ' + zs + '">ZTL ' + escapeHtml(v.ztl[z].citta) + (v.ztl[z].scadenza ? ' ðŸ“… ' + displayDate(v.ztl[z].scadenza) : '') + '</span>';
     }
   }
 
   // Badge "mezzo in uso" da runtime
   if (!isAdmin && isUtilizzatore) {
-    var badgeText = v.pool === 'Scorta' ? '🔄 Sostitutiva in carico' : v.pool === 'Tecnico' ? '🔄 Mezzo Tecnico in uso' : v.pool === 'Speciali' ? '🔄 Mezzo Speciale in uso' : '🔄 Mezzo in uso';
+    var badgeText = v.pool === 'Scorta' ? 'ðŸ”„ Sostitutiva in carico' : v.pool === 'Tecnico' ? 'ðŸ”„ Mezzo Tecnico in uso' : v.pool === 'Speciali' ? 'ðŸ”„ Mezzo Speciale in uso' : 'ðŸ”„ Mezzo in uso';
     chips += '<span class="badge" style="background:rgba(99,102,241,.15);color:#818cf8;border:1px solid rgba(99,102,241,.3);font-size:10px">' + badgeText + '</span>';
   }
 
   var html = '<div class="vcard">';
-  html += '<div class="ctop"><span class="targa" style="flex-shrink:0">' + escapeHtml(t) + (v.carburante ? '<span style="font-size:13px;font-weight:400;color:var(--muted);margin-left:6px">⛽ ' + escapeHtml(v.carburante) + '</span>' : '') + '</span>' + badge + '</div>';
-  if (v.tipo) html += '<div style="font-size:12px;color:var(--muted);margin-top:3px">🚗 ' + escapeHtml(v.tipo) + '</div>';
+  html += '<div class="ctop"><span class="targa" style="flex-shrink:0">' + escapeHtml(t) + (v.carburante ? '<span style="font-size:13px;font-weight:400;color:var(--muted);margin-left:6px">â›½ ' + escapeHtml(v.carburante) + '</span>' : '') + '</span>' + badge + '</div>';
+  if (v.tipo) html += '<div style="font-size:12px;color:var(--muted);margin-top:3px">ðŸš— ' + escapeHtml(v.tipo) + '</div>';
   html += '<div class="chips" style="margin-top:8px">' + chips + '</div>';
 
   // Torna operativa (solo se Officina)
-  if (isOff) html += '<button class="abtn abtn-rientro" style="width:100%;margin-top:8px" onclick="openRientro(\'' + t + '\')">✅ Torna operativa</button>';
+  if (isOff) html += '<button class="abtn abtn-rientro" style="width:100%;margin-top:8px" onclick="openRientro(\'' + t + '\')">âœ… Torna operativa</button>';
 
-  // Riga azioni inline: PIN · ZTL · Documenti · Segnala · [Rilascia] · [Promemoria] · [Modifica]
+  // Riga azioni inline: PIN Â· ZTL Â· Documenti Â· Segnala Â· [Rilascia] Â· [Promemoria] Â· [Modifica]
   html += '<div style="display:flex;gap:5px;margin-top:8px;flex-wrap:wrap">';
 
   if ((v.pin_eni || v.pin_q8) && pinVisible)
-    html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="openPinModal(\'' + t + '\')">⛽ PIN</button>';
+    html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="openPinModal(\'' + t + '\')">â›½ PIN</button>';
 
 
-  html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="openDocsModal(\'' + t + '\')">📄 Documenti</button>';
+  html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="openDocsModal(\'' + t + '\')">ðŸ“„ Documenti</button>';
 
   // Segnala: admin sempre, utente solo se auto in carico
   if (isAdmin || isInCarico)
-    html += '<button class="btn-pin" style="flex:1;min-width:70px" onclick="openMenu(\'' + t + '\')">🔧 Segnala</button>';
+    html += '<button class="btn-pin" style="flex:1;min-width:70px" onclick="openMenu(\'' + t + '\')">ðŸ”§ Segnala</button>';
 
   // Rilascia: utente che ha auto in carico via runtime (incluso Gestore Op. switch OFF)
   var _isVeroPool = ['Scorta','Tecnico','Speciali'].indexOf(v.pool) !== -1;
   var isGestoreOpSoloMio = currentUser && currentUser.ruolo === 'Gestore Op.' && !currentUser.gestoreOpFlottaOn;
   if ((!isAdmin || isGestoreOpSoloMio) && isUtilizzatore && _isVeroPool)
-    html += '<button class="btn-pin" style="flex:1;min-width:70px;background:rgba(239,68,68,.15);color:var(--red);border-color:rgba(239,68,68,.4)" onclick="openRilascio(\'' + t + '\')">🔓 Rilascia</button>';
+    html += '<button class="btn-pin" style="flex:1;min-width:70px;background:rgba(239,68,68,.15);color:var(--red);border-color:rgba(239,68,68,.4)" onclick="openRilascio(\'' + t + '\')">ðŸ”“ Rilascia</button>';
 
   // Solo admin: Promemoria operativo + Modifica
   if (isAdmin) {
     if (v.note)
-      html += '<button class="btn-pin" style="flex:1;min-width:90px;color:#f59e0b;border-color:rgba(245,158,11,.4)" onclick="openPromemoria(\'' + t + '\')">📋 Promemoria</button>';
-    html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="editV(\'' + t + '\')">✏️ Modifica</button>';
+      html += '<button class="btn-pin" style="flex:1;min-width:90px;color:#f59e0b;border-color:rgba(245,158,11,.4)" onclick="openPromemoria(\'' + t + '\')">ðŸ“‹ Promemoria</button>';
+    html += '<button class="btn-pin" style="flex:1;min-width:80px" onclick="editV(\'' + t + '\')">âœï¸ Modifica</button>';
   }
 
   html += '</div></div>';
@@ -2367,9 +2367,9 @@ function renderList() {
   var html = '';
   if (filtered.length === 0) {
     if (FLEET.length === 0 && currentUser && currentUser.isAdmin) {
-      html = '<div class="empty"><div class="empty-icon">📥</div><div style="font-weight:700;margin-bottom:8px">Nessun dato caricato</div><div style="font-size:13px;color:var(--muted);margin-bottom:16px">Importa il file Excel per caricare la flotta</div><button class="login-btn" style="width:auto;padding:10px 24px;font-size:14px" onclick="importFleetData()">📥 Importa Excel</button></div>';
+      html = '<div class="empty"><div class="empty-icon">ðŸ“¥</div><div style="font-weight:700;margin-bottom:8px">Nessun dato caricato</div><div style="font-size:13px;color:var(--muted);margin-bottom:16px">Importa il file Excel per caricare la flotta</div><button class="login-btn" style="width:auto;padding:10px 24px;font-size:14px" onclick="importFleetData()">ðŸ“¥ Importa Excel</button></div>';
     } else {
-      html = '<div class="empty"><div class="empty-icon">🔍</div><div>Nessun veicolo trovato</div></div>';
+      html = '<div class="empty"><div class="empty-icon">ðŸ”</div><div>Nessun veicolo trovato</div></div>';
     }
   } else {
     for (var k = 0; k < filtered.length; k++) {
@@ -2398,9 +2398,9 @@ function openPromemoria(targa) {
   ov.className = 'overlay';
   ov.style.display = 'flex';
   ov.innerHTML = '<div class="modal" style="max-width:440px">'
-    + '<div class="modal-hd"><span>📋 Promemoria operativo</span><button class="close-btn" onclick="document.getElementById(\'ovPromemoria\').remove()">✕</button></div>'
+    + '<div class="modal-hd"><span>ðŸ“‹ Promemoria operativo</span><button class="close-btn" onclick="document.getElementById(\'ovPromemoria\').remove()">âœ•</button></div>'
     + '<div style="padding:16px">'
-    + '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">🚗 ' + escapeHtml(v.targa) + (v.tipo ? ' · ' + escapeHtml(v.tipo) : '') + '</div>'
+    + '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">ðŸš— ' + escapeHtml(v.targa) + (v.tipo ? ' Â· ' + escapeHtml(v.tipo) : '') + '</div>'
     + '<div style="background:var(--surf2);border-radius:8px;padding:14px;font-size:13px;color:var(--text);line-height:1.6;white-space:pre-wrap">' + escapeHtml(v.note) + '</div>'
     + '</div>'
     + '<div style="padding:0 16px 16px"><button class="login-btn" style="width:100%" onclick="document.getElementById(\'ovPromemoria\').remove()">Chiudi</button></div>'
@@ -2411,18 +2411,18 @@ function openPromemoria(targa) {
 function toggleList() {
   listVisible = !listVisible;
   var panel = document.getElementById('listPanel'), btn = document.getElementById('btnToggleList');
-  if (listVisible) { panel.style.display = 'block'; btn.innerHTML = '▲ Nascondi veicoli'; btn.classList.add('open'); renderList(); }
-  else { panel.style.display = 'none'; btn.innerHTML = '🚗 Mostra veicoli'; btn.classList.remove('open'); }
+  if (listVisible) { panel.style.display = 'block'; btn.innerHTML = 'â–² Nascondi veicoli'; btn.classList.add('open'); renderList(); }
+  else { panel.style.display = 'none'; btn.innerHTML = 'ðŸš— Mostra veicoli'; btn.classList.remove('open'); }
 }
 
 function openReport() {
-  var html = '<div class="report-section"><div class="report-section-hd report-hd-off"><span>🔧 In Officina</span><span>' + FLEET.filter(function(v) { return getStato(v) === 'Officina'; }).length + '</span></div>';
+  var html = '<div class="report-section"><div class="report-section-hd report-hd-off"><span>ðŸ”§ In Officina</span><span>' + FLEET.filter(function(v) { return getStato(v) === 'Officina'; }).length + '</span></div>';
   var inOff = FLEET.filter(function(v) { return getStato(v) === 'Officina'; });
   if (inOff.length === 0) html += '<div class="report-empty">Nessun veicolo in officina</div>';
   else {
     for (var i = 0; i < inOff.length; i++) {
       var v = inOff[i];
-      html += '<div class="report-card report-card-off"><div class="report-targa">' + v.targa + '</div><div class="report-tipo">' + (v.tipo || '') + '</div><div class="report-row"><span class="report-chip">📍 ' + (v.sede || 'N/D') + '</span></div></div>';
+      html += '<div class="report-card report-card-off"><div class="report-targa">' + v.targa + '</div><div class="report-tipo">' + (v.tipo || '') + '</div><div class="report-row"><span class="report-chip">ðŸ“ ' + (v.sede || 'N/D') + '</span></div></div>';
     }
   }
   html += '</div>';
@@ -2465,7 +2465,7 @@ function toggleGestoreOpFlotta() {
       if (tBtn) { tBtn.innerHTML = '\u25b2 Nascondi veicoli'; tBtn.classList.add('open'); }
     }
   } else {
-    // Nasconde ricerca e filtri quando torna a "Solo mia attività"
+    // Nasconde ricerca e filtri quando torna a "Solo mia attivitÃ "
     var sbEl2 = document.getElementById('searchBar');
     var fbEl2 = document.getElementById('filtersBar');
     if (sbEl2) sbEl2.style.display = 'none';
@@ -2525,7 +2525,7 @@ function doLogin() {
     // STEP A: cerca CID in CID_anagrafica (importata da Excel)
     // CID_LIST = [{cid, cognome, nome, ruolo, ...}]
     // Col H dell'Excel = ruolo reale (Assegnatario/Ospite/Driver Aut./Gestore Op.)
-    // Se col H è vuota -> Assegnatario
+    // Se col H Ã¨ vuota -> Assegnatario
     var entry = null;
     for (var i = 0; i < CID_LIST.length; i++) {
       if (sameCid(CID_LIST[i].cid, cid)) { entry = CID_LIST[i]; break; }
@@ -2546,7 +2546,7 @@ function doLogin() {
       saveSession(currentUser); postLoginFlow(); return;
     }
 
-    // STEP B: CID_LIST vuota (Excel non importato) — cerca in DB veicoli
+    // STEP B: CID_LIST vuota (Excel non importato) â€” cerca in DB veicoli
     var veicolo = null;
     for (var j = 0; j < FLEET.length; j++) {
       if (sameCid(FLEET[j].cid, cid)) { veicolo = FLEET[j]; break; }
@@ -2565,8 +2565,8 @@ function doLogin() {
       saveSession(currentUser); postLoginFlow(); return;
     }
 
-    // STEP C: né CID_LIST né FLEET hanno questo CID
-    // Accade solo se Excel non è stato importato
+    // STEP C: nÃ© CID_LIST nÃ© FLEET hanno questo CID
+    // Accade solo se Excel non Ã¨ stato importato
     // Accettiamo comunque: l'utente conosce il PIN aziendale
     currentUser = {
       cid:         cid,
@@ -2591,7 +2591,7 @@ function showGuestRegistration(cid) {
   box.id = 'guestRegBox';
   box.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9998;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px';
   box.innerHTML = '<div style="width:100%;max-width:360px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:0;padding:24px">'
-    + '<div style="font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:800;color:var(--acc);margin-bottom:4px">👤 Accesso Ospite</div>'
+    + '<div style="font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:800;color:var(--acc);margin-bottom:4px">ðŸ‘¤ Accesso Ospite</div>'
     + '<div style="font-size:12px;color:var(--muted);margin-bottom:18px">Inserisci i tuoi dati per continuare</div>'
     + '<label class="login-label">Nome</label>'
     + '<input class="login-input" type="text" id="guestNome" placeholder="Nome" style="letter-spacing:0;text-align:left;font-size:16px;margin-bottom:10px">'
@@ -2599,14 +2599,14 @@ function showGuestRegistration(cid) {
     + '<input class="login-input" type="text" id="guestCognome" placeholder="Cognome" style="letter-spacing:0;text-align:left;font-size:16px;margin-bottom:10px">'
     + '<label class="login-label">Email</label>'
     + '<input class="login-input" type="email" id="guestEmail" placeholder="email@azienda.it" style="letter-spacing:0;text-align:left;font-size:16px;margin-bottom:10px">'
-    + '<label class="login-label">Città / Sede (filtra le auto disponibili)</label>'
+    + '<label class="login-label">CittÃ  / Sede (filtra le auto disponibili)</label>'
     + '<select class="fi" id="guestCitta" style="margin-bottom:16px;background:#111;font-size:15px">'
-    + '<option value="">-- Seleziona città --</option>'
+    + '<option value="">-- Seleziona cittÃ  --</option>'
     + ['Palermo','Trapani','Agrigento','Caltanissetta','Sciacca','Bagheria','Mazara del Vallo'].map(function(c){return '<option>'+c+'</option>';}).join('')
     + '</select>'
     + '<div id="guestRegErr" style="color:var(--red);font-size:12px;margin-bottom:8px;min-height:16px"></div>'
     + '<button class="login-btn" onclick="confirmGuestReg(\'' + cid + '\')">Accedi come Ospite</button>'
-    + '<button style="width:100%;margin-top:8px;padding:10px;background:none;border:1px solid #333;color:var(--muted);cursor:pointer;font-family:inherit" onclick="document.getElementById(\'guestRegBox\').remove()">← Indietro</button>'
+    + '<button style="width:100%;margin-top:8px;padding:10px;background:none;border:1px solid #333;color:var(--muted);cursor:pointer;font-family:inherit" onclick="document.getElementById(\'guestRegBox\').remove()">â† Indietro</button>'
     + '</div>';
   document.body.appendChild(box);
 }
@@ -2637,7 +2637,7 @@ function confirmGuestReg(cid) {
 }
 
 function postLoginFlow() {
-  // Sicurezza assoluta: solo chi è esplicitamente admin può avere isAdmin=true
+  // Sicurezza assoluta: solo chi Ã¨ esplicitamente admin puÃ² avere isAdmin=true
   if (currentUser && !currentUser.isSuperAdmin && ADMIN_CIDS.indexOf(currentUser.cid) === -1 && currentUser.cid !== '1234') {
     currentUser.isAdmin = false;
     if (currentUser.ruolo === 'Admin') currentUser.ruolo = 'Assegnatario';
@@ -2650,7 +2650,7 @@ function postLoginFlow() {
     localStorage.setItem('mf_user_sede_' + currentUser.cid, 'ADMIN');
     startApp(); return;
   }
-  // Non-admin: userSede non serve per il filtro, il filtro è per CID
+  // Non-admin: userSede non serve per il filtro, il filtro Ã¨ per CID
   userSede = null;
   startApp();
 }
@@ -2674,11 +2674,11 @@ function showSedeSelector() {
 
   var title = document.createElement('div');
   title.style.cssText = 'font-size:20px;font-weight:800;color:var(--acc);margin-bottom:6px';
-  title.textContent = '📍 Seleziona la tua Sede';
+  title.textContent = 'ðŸ“ Seleziona la tua Sede';
 
   var sub = document.createElement('div');
   sub.style.cssText = 'font-size:13px;color:var(--muted);margin-bottom:16px';
-  sub.textContent = 'Scegli la sede di riferimento. Potrai cambiarla in seguito dal menu ⚙️.';
+  sub.textContent = 'Scegli la sede di riferimento. Potrai cambiarla in seguito dal menu âš™ï¸.';
 
   box.appendChild(title);
   box.appendChild(sub);
@@ -2686,7 +2686,7 @@ function showSedeSelector() {
   sedi.forEach(function(sede) {
     var btn = document.createElement('button');
     btn.style.cssText = 'width:100%;padding:12px 14px;margin-bottom:6px;background:var(--surf2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;text-align:left;cursor:pointer';
-    btn.textContent = '📍 ' + sede;
+    btn.textContent = 'ðŸ“ ' + sede;
     btn.addEventListener('click', function() { selectSede(sede); });
     box.appendChild(btn);
   });
@@ -2711,7 +2711,7 @@ function saveSession(u) { localStorage.setItem('myfleet_user', JSON.stringify(u)
 function loadSession() { try { var s = localStorage.getItem('myfleet_user'); return s ? JSON.parse(s) : null; } catch(e) { return null; } }
 function showLogoutConfirm() { showOverlay('ovLogout'); }
 function resetDatabase() {
-  if (!confirm('⚠️ ATTENZIONE: Cancellare TUTTI i dati del DB (flotta, cancellate, CID, prenotazioni)?\n\nQuesta operazione è irreversibile!')) return;
+  if (!confirm('âš ï¸ ATTENZIONE: Cancellare TUTTI i dati del DB (flotta, cancellate, CID, prenotazioni)?\n\nQuesta operazione Ã¨ irreversibile!')) return;
   if (!confirm('Sei sicuro? Tutti i dati verranno persi definitivamente.')) return;
   FLEET = [];
   cancelledFleet = [];
@@ -2724,7 +2724,7 @@ function resetDatabase() {
   renderStats();
   renderList();
   closeAll();
-  showToast('✓ DB resettato. Importa un nuovo Excel.');
+  showToast('âœ“ DB resettato. Importa un nuovo Excel.');
 }
 
 function openBugiardino() { showOverlay('ovBugiardino'); }
@@ -2737,13 +2737,13 @@ function openGearMenu() {
   var importSec = document.getElementById('gearImportSection');
   if (pName) {
     if (currentUser.isAdmin) {
-      pName.textContent = '⭐ Amministratore';
+      pName.textContent = 'â­ Amministratore';
       pCid.textContent = 'CID: ' + currentUser.cid;
-      pSede.textContent = '🗂️ Accesso globale (tutte le sedi)';
+      pSede.textContent = 'ðŸ—‚ï¸ Accesso globale (tutte le sedi)';
     } else {
       pName.textContent = (currentUser.cognome + ' ' + currentUser.nome).trim() || ('CID ' + currentUser.cid);
-      pCid.textContent = 'CID: ' + currentUser.cid + (currentUser.isGuest ? ' · Ospite' : '');
-      pSede.textContent = userSede ? ('📍 Sede: ' + userSede) : '⚠️ Sede non selezionata';
+      pCid.textContent = 'CID: ' + currentUser.cid + (currentUser.isGuest ? ' Â· Ospite' : '');
+      pSede.textContent = userSede ? ('ðŸ“ Sede: ' + userSede) : 'âš ï¸ Sede non selezionata';
     }
   }
   if (sedeBtn && !currentUser.isAdmin) {
@@ -2815,7 +2815,7 @@ function startApp() {
       var cidValEl = document.getElementById('userCidValue');
       var cidNameEl = document.getElementById('userCidName');
       if (cidValEl) cidValEl.textContent = currentUser.cid;
-      if (cidNameEl) cidNameEl.textContent = (currentUser.cognome + ' ' + currentUser.nome).trim() + (isOspite ? ' · Ospite' : (isDriverAut ? ' · Driver Aut.' : (isGestoreOp ? ' · Gestore Op.' : '')));
+      if (cidNameEl) cidNameEl.textContent = (currentUser.cognome + ' ' + currentUser.nome).trim() + (isOspite ? ' Â· Ospite' : (isDriverAut ? ' Â· Driver Aut.' : (isGestoreOp ? ' Â· Gestore Op.' : '')));
     } else {
       cidBanner.style.display = 'none';
     }
@@ -2839,11 +2839,11 @@ function startApp() {
   }
   if (ruolo === 'Ospite' || isGuest) {
     ospiteBanner.style.display = 'block';
-    ospiteBanner.innerHTML = '<div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:.5px">👤 Accesso Ospite</div>' +
+    ospiteBanner.innerHTML = '<div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:.5px">ðŸ‘¤ Accesso Ospite</div>' +
       '<div style="font-size:12px;color:var(--muted);margin-top:4px">Vedi solo il veicolo che hai prelevato da un pool. Usa il menu in basso per prenotare un pool Scorta.</div>';
   } else if (ruolo === 'Driver Aut.') {
     ospiteBanner.style.display = 'block';
-    ospiteBanner.innerHTML = '<div style="font-size:11px;color:#3b82f6;font-weight:700;letter-spacing:.5px">🚗 Driver Autonomo</div>' +
+    ospiteBanner.innerHTML = '<div style="font-size:11px;color:#3b82f6;font-weight:700;letter-spacing:.5px">ðŸš— Driver Autonomo</div>' +
       '<div style="font-size:12px;color:var(--muted);margin-top:4px">Puoi prelevare veicoli dai pool disponibili. La lista sotto mostra i veicoli liberi nella tua sede.</div>';
   } else {
     ospiteBanner.style.display = 'none';
@@ -2855,15 +2855,15 @@ function startApp() {
     listVisible = true;
     document.getElementById('listPanel').style.display = 'block';
     var tBtn = document.getElementById('btnToggleList');
-    if (tBtn) { tBtn.innerHTML = '▲ Nascondi veicoli'; tBtn.classList.add('open'); }
+    if (tBtn) { tBtn.innerHTML = 'â–² Nascondi veicoli'; tBtn.classList.add('open'); }
   } else {
     listVisible = false;
     document.getElementById('listPanel').style.display = 'none';
     var tBtn2 = document.getElementById('btnToggleList');
-    if (tBtn2) { tBtn2.innerHTML = '🚗 Mostra veicoli'; tBtn2.classList.remove('open'); }
+    if (tBtn2) { tBtn2.innerHTML = 'ðŸš— Mostra veicoli'; tBtn2.classList.remove('open'); }
   }
   initFleet();
-  // Ospite: dopo initFleet (che carica runtime e prenot), controlla se ha già un veicolo in carico
+  // Ospite: dopo initFleet (che carica runtime e prenot), controlla se ha giÃ  un veicolo in carico
   if (isOspite) {
     var myCidGuest = (currentUser.cid || '').toString().trim();
     var guestHasVehicle = false;
@@ -2881,7 +2881,7 @@ function startApp() {
       listVisible = true;
       document.getElementById('listPanel').style.display = 'block';
       var tBtnG = document.getElementById('btnToggleList');
-      if (tBtnG) { tBtnG.innerHTML = '▲ Nascondi veicoli'; tBtnG.classList.add('open'); }
+      if (tBtnG) { tBtnG.innerHTML = 'â–² Nascondi veicoli'; tBtnG.classList.add('open'); }
       renderList();
     }
   }
@@ -2895,7 +2895,7 @@ function startApp() {
       listVisible = true;
       document.getElementById('listPanel').style.display = 'block';
       var tBtnA = document.getElementById('btnToggleList');
-      if (tBtnA) { tBtnA.innerHTML = '▲ Nascondi veicoli'; tBtnA.classList.add('open'); }
+      if (tBtnA) { tBtnA.innerHTML = 'â–² Nascondi veicoli'; tBtnA.classList.add('open'); }
       renderList();
     }
   }
@@ -2932,17 +2932,17 @@ function openVisioneGlobale() {
   document.querySelectorAll('.vg-pin').forEach(function(p) { p.setAttribute('fill', '#f0a500'); });
 
   var sedeKeys = Object.keys(sedi).sort();
-  var html = '<div style="margin-bottom:10px;font-size:12px;color:var(--muted)">Totale veicoli: <b style="color:var(--text)">' + FLEET.length + '</b> · Tocca una puntina per i dettagli</div>';
+  var html = '<div style="margin-bottom:10px;font-size:12px;color:var(--muted)">Totale veicoli: <b style="color:var(--text)">' + FLEET.length + '</b> Â· Tocca una puntina per i dettagli</div>';
   for (var si = 0; si < sedeKeys.length; si++) {
     var sede = sedeKeys[si], g = sedi[sede];
     var tot = g.m.length + g.o.length + g.s.length + g.a.length;
     html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="vgShowSede(' + JSON.stringify(sede) + ')">';
-    html += '<span style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800">📍 ' + escapeHtml(sede) + '</span>';
+    html += '<span style="font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:800">ðŸ“ ' + escapeHtml(sede) + '</span>';
     html += '<div style="display:flex;gap:8px;align-items:center">';
-    if (g.m.length) html += '<span style="font-size:11px;color:var(--green)">✅ ' + g.m.length + '</span>';
-    if (g.arr && g.arr.length) html += '<span style="font-size:11px;color:var(--blue)">🚛 ' + g.arr.length + '</span>';
-    if (g.o.length) html += '<span style="font-size:11px;color:var(--orange)">🔧 ' + g.o.length + '</span>';
-    if (g.s.length) html += '<span style="font-size:11px;color:var(--blue)">🔄 ' + g.s.length + '</span>';
+    if (g.m.length) html += '<span style="font-size:11px;color:var(--green)">âœ… ' + g.m.length + '</span>';
+    if (g.arr && g.arr.length) html += '<span style="font-size:11px;color:var(--blue)">ðŸš› ' + g.arr.length + '</span>';
+    if (g.o.length) html += '<span style="font-size:11px;color:var(--orange)">ðŸ”§ ' + g.o.length + '</span>';
+    if (g.s.length) html += '<span style="font-size:11px;color:var(--blue)">ðŸ”„ ' + g.s.length + '</span>';
     html += '<span style="font-size:11px;color:var(--muted)">Tot: ' + tot + '</span>';
     html += '</div></div>';
   }
@@ -2963,7 +2963,7 @@ function vgShowSede(sede) {
   var title = document.getElementById('vgSedeTitle');
   var list = document.getElementById('vgSedeList');
 
-  title.textContent = '📍 ' + sede + ' (' + veicoli.length + ' veicoli)';
+  title.textContent = 'ðŸ“ ' + sede + ' (' + veicoli.length + ' veicoli)';
 
   if (!veicoli.length) {
     list.innerHTML = '<div style="color:var(--muted);font-size:12px">Nessun veicolo in questa sede</div>';
@@ -2977,10 +2977,10 @@ function vgShowSede(sede) {
       else cats.m.push(v);
     });
     var catDefs = [
-      { key: 'm', label: '✅ Marcianti', col: 'var(--green)' },
-      { key: 'o', label: '🔧 Officina', col: 'var(--orange)' },
-      { key: 's', label: '🔄 Scorta', col: 'var(--blue)' },
-      { key: 'a', label: '⭐ Pool', col: 'var(--muted)' }
+      { key: 'm', label: 'âœ… Marcianti', col: 'var(--green)' },
+      { key: 'o', label: 'ðŸ”§ Officina', col: 'var(--orange)' },
+      { key: 's', label: 'ðŸ”„ Scorta', col: 'var(--blue)' },
+      { key: 'a', label: 'â­ Pool', col: 'var(--muted)' }
     ];
     var html = '';
     catDefs.forEach(function(cat) {
@@ -3214,9 +3214,9 @@ function renderCidList() {
     if (!q) return true;
     return (c.cid + ' ' + c.cognome + ' ' + c.nome).toLowerCase().indexOf(q) !== -1;
   });
-  var html = '<div style="font-size:11px;color:var(--muted);margin-bottom:8px">' + CID_LIST.length + ' CID totali · ' + list.length + ' visualizzati</div>';
+  var html = '<div style="font-size:11px;color:var(--muted);margin-bottom:8px">' + CID_LIST.length + ' CID totali Â· ' + list.length + ' visualizzati</div>';
   if (!list.length) {
-    html += '<div class="empty" style="padding:20px"><div class="empty-icon">🔍</div><div>Nessun risultato</div></div>';
+    html += '<div class="empty" style="padding:20px"><div class="empty-icon">ðŸ”</div><div>Nessun risultato</div></div>';
   } else {
     for (var i = 0; i < list.length; i++) {
       var c = list[i];
@@ -3224,8 +3224,8 @@ function renderCidList() {
       html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;gap:10px">';
       html += '<span style="font-family:monospace;color:var(--acc);font-weight:700;font-size:14px;min-width:90px">' + escapeHtml(c.cid) + '</span>';
       html += '<span style="flex:1;font-size:13px">' + escapeHtml(c.cognome) + ' ' + escapeHtml(c.nome) + '</span>';
-      html += '<button style="padding:4px 10px;background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.3);border-radius:6px;color:var(--acc);font-size:11px;font-weight:700;cursor:pointer" onclick="openEditCid(' + realIdx + ')">✏️</button>';
-      html += '<button style="padding:4px 10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:6px;color:var(--red);font-size:11px;font-weight:700;cursor:pointer" onclick="deleteCid(' + realIdx + ')">✕</button>';
+      html += '<button style="padding:4px 10px;background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.3);border-radius:6px;color:var(--acc);font-size:11px;font-weight:700;cursor:pointer" onclick="openEditCid(' + realIdx + ')">âœï¸</button>';
+      html += '<button style="padding:4px 10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:6px;color:var(--red);font-size:11px;font-weight:700;cursor:pointer" onclick="deleteCid(' + realIdx + ')">âœ•</button>';
       html += '</div>';
     }
   }
@@ -3234,7 +3234,7 @@ function renderCidList() {
 
 function openNuovoCid() {
   _editCidIndex = -1;
-  document.getElementById('editCidTitle').textContent = '➕ Nuovo CID';
+  document.getElementById('editCidTitle').textContent = 'âž• Nuovo CID';
   document.getElementById('editCidSubtitle').textContent = '';
   document.getElementById('editCidValue').value = '';
   document.getElementById('editCidCognome').value = '';
@@ -3246,7 +3246,7 @@ function openNuovoCid() {
 function openEditCid(idx) {
   _editCidIndex = idx;
   var c = CID_LIST[idx];
-  document.getElementById('editCidTitle').textContent = '✏️ Modifica CID';
+  document.getElementById('editCidTitle').textContent = 'âœï¸ Modifica CID';
   document.getElementById('editCidSubtitle').textContent = 'CID: ' + c.cid;
   document.getElementById('editCidValue').value = c.cid;
   document.getElementById('editCidCognome').value = c.cognome || '';
@@ -3266,7 +3266,7 @@ function saveEditCid() {
   if (!cid) { showToast('CID obbligatorio', true); return; }
   if (!cognome && !nome) { showToast('Inserisci almeno cognome o nome', true); return; }
   if (_editCidIndex === -1) {
-    if (findCid(cid)) { showToast('CID già presente', true); return; }
+    if (findCid(cid)) { showToast('CID giÃ  presente', true); return; }
     CID_LIST.push({ cid: cid, cognome: cognome, nome: nome });
   } else {
     CID_LIST[_editCidIndex] = { cid: cid, cognome: cognome, nome: nome };
@@ -3370,7 +3370,7 @@ function updateCounter(){
   var big=document.getElementById('counterBig');
   var sub=document.getElementById('counterSub');
   if(!big)return;
-  big.textContent=FLEET.length||'—';
+  big.textContent=FLEET.length||'â€”';
   if(!sub)return;
   var marc=0,off=0;
   for(var i=0;i<FLEET.length;i++){
@@ -3446,7 +3446,7 @@ function exportFleetCsv() {
   a.href = URL.createObjectURL(blob);
   a.download = 'FlottaSicOvest_' + new Date().toISOString().slice(0,10) + '.csv';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  showToast('📤 CSV esportato: ' + FLEET.length + ' veicoli');
+  showToast('ðŸ“¤ CSV esportato: ' + FLEET.length + ' veicoli');
 }
 function extractCity(sede) {
   if (!sede) return '';
@@ -3502,8 +3502,8 @@ function renderCidTable() {
       + '<td style="padding:5px 8px;color:var(--muted)">' + escapeHtml(c.sede||'') + '</td>'
       + '<td style="padding:5px 8px;font-family:monospace">' + escapeHtml(c.targa||'') + '</td>'
       + '<td style="padding:5px 8px;white-space:nowrap">'
-        + '<button onclick="cdbEdit(\'' + escapeHtml(c.cid) + '\')" style="background:none;border:none;cursor:pointer;font-size:13px;margin-right:4px" title="Modifica">✏️</button>'
-        + '<button onclick="cdbDelete(\'' + escapeHtml(c.cid) + '\')" style="background:none;border:none;cursor:pointer;font-size:13px" title="Elimina">🗑️</button>'
+        + '<button onclick="cdbEdit(\'' + escapeHtml(c.cid) + '\')" style="background:none;border:none;cursor:pointer;font-size:13px;margin-right:4px" title="Modifica">âœï¸</button>'
+        + '<button onclick="cdbDelete(\'' + escapeHtml(c.cid) + '\')" style="background:none;border:none;cursor:pointer;font-size:13px" title="Elimina">ðŸ—‘ï¸</button>'
       + '</td></tr>';
   });
   html += '</tbody></table>';
@@ -3520,14 +3520,14 @@ function cdbSalva() {
   var targa   = document.getElementById('cdbTarga').value.trim().toUpperCase();
   var ruolo   = document.getElementById('cdbRuolo').value;
 
-  if (!cid || !cognome || !nome) { showToast('⚠️ CID, Cognome e Nome sono obbligatori', true); return; }
-  if (cid !== '1234' && !cid.startsWith('084')) { showToast('⚠️ CID non valido: deve iniziare con 084', true); return; }
+  if (!cid || !cognome || !nome) { showToast('âš ï¸ CID, Cognome e Nome sono obbligatori', true); return; }
+  if (cid !== '1234' && !cid.startsWith('084')) { showToast('âš ï¸ CID non valido: deve iniziare con 084', true); return; }
 
   var existing = -1;
   for (var i = 0; i < CID_LIST.length; i++) { if (CID_LIST[i].cid === cid) { existing = i; break; } }
   var entry = { cid: cid, cognome: cognome, nome: nome, mail: mail||null, sede: sede||null, targa: targa||null, ruolo: ruolo||'Assegnatario' };
-  if (existing >= 0) { CID_LIST[existing] = entry; showToast('✅ Anagrafica aggiornata: ' + cid); }
-  else { CID_LIST.push(entry); showToast('✅ Anagrafica aggiunta: ' + cid); }
+  if (existing >= 0) { CID_LIST[existing] = entry; showToast('âœ… Anagrafica aggiornata: ' + cid); }
+  else { CID_LIST.push(entry); showToast('âœ… Anagrafica aggiunta: ' + cid); }
 
   localStorage.setItem('mf_cid_list', JSON.stringify(CID_LIST));
 
@@ -3555,7 +3555,7 @@ function cdbDelete(cid) {
   CID_LIST = CID_LIST.filter(function(c) { return c.cid !== cid; });
   localStorage.setItem('mf_cid_list', JSON.stringify(CID_LIST));
   renderCidTable();
-  showToast('🗑️ Anagrafica ' + cid + ' rimossa');
+  showToast('ðŸ—‘ï¸ Anagrafica ' + cid + ' rimossa');
 }
 
 function cdbReset() {
@@ -3577,7 +3577,7 @@ function exportCidDb() {
   XLSX.utils.book_append_sheet(wb, ws, 'CID_anagrafica');
   var today = new Date().toISOString().slice(0,10).replace(/-/g,'');
   XLSX.writeFile(wb, 'DBcid_' + today + '.xlsx');
-  showToast('📤 Esportati ' + CID_LIST.length + ' anagrafiche');
+  showToast('ðŸ“¤ Esportati ' + CID_LIST.length + ' anagrafiche');
 }
 
 function goTab(t){
@@ -3618,7 +3618,7 @@ function filtraLista(f) {
   if (panel && panel.style.display === 'none') {
     listVisible = true;
     panel.style.display = 'block';
-    if (btn) { btn.innerHTML = '▲ Nascondi veicoli'; btn.classList.add('open'); }
+    if (btn) { btn.innerHTML = 'â–² Nascondi veicoli'; btn.classList.add('open'); }
   }
   renderList();
   var vl = document.getElementById('vlist');
@@ -3628,7 +3628,7 @@ function handleFileImport(e){
   var file=e.target.files[0];if(!file)return;e.target.value='';
   var r=new FileReader();
   r.onload=function(ev){processExcelData(ev.target.result);};
-  r.onerror=function(){showToast('❌ File bloccato da Excel. Chiudi il file in Excel e riprova.',true);};
+  r.onerror=function(){showToast('âŒ File bloccato da Excel. Chiudi il file in Excel e riprova.',true);};
   r.readAsArrayBuffer(file);
 }
 
@@ -3639,25 +3639,25 @@ function openZtlModal(targa) {
   var ztlList = v.ztl || [];
   var html = '';
   if (ztlList.length === 0) {
-    html = '<div class="empty"><div class="empty-icon">🛂</div><div>Nessuna ZTL autorizzata per questo veicolo</div></div>';
+    html = '<div class="empty"><div class="empty-icon">ðŸ›‚</div><div>Nessuna ZTL autorizzata per questo veicolo</div></div>';
   } else {
     for (var i = 0; i < ztlList.length; i++) {
       var z = ztlList[i];
       var st = ztlStatus(z);
       var stText = '', stColor = '';
-      if (st === 'expired') { stText = '🔴 SCADUTA'; stColor = 'var(--red)'; }
-      else if (st === 'expiring') { stText = '🟡 Scade tra ' + Math.ceil((new Date(z.scadenza) - new Date()) / 86400000) + ' gg'; stColor = 'var(--orange)'; }
-      else { stText = '✅ Valida'; stColor = 'var(--green)'; }
+      if (st === 'expired') { stText = 'ðŸ”´ SCADUTA'; stColor = 'var(--red)'; }
+      else if (st === 'expiring') { stText = 'ðŸŸ¡ Scade tra ' + Math.ceil((new Date(z.scadenza) - new Date()) / 86400000) + ' gg'; stColor = 'var(--orange)'; }
+      else { stText = 'âœ… Valida'; stColor = 'var(--green)'; }
       html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px">';
       html += '<div style="display:flex;justify-content:space-between;align-items:center">';
-      html += '<span style="font-weight:700">📍 ' + escapeHtml(z.citta || 'N/D') + '</span>';
+      html += '<span style="font-weight:700">ðŸ“ ' + escapeHtml(z.citta || 'N/D') + '</span>';
       html += '<span style="color:' + stColor + ';font-size:12px;font-weight:700">' + stText + '</span>';
       html += '</div>';
-      if (z.scadenza) html += '<div style="font-size:11px;color:var(--muted);margin-top:4px">📅 Scadenza: ' + displayDate(z.scadenza) + '</div>';
+      if (z.scadenza) html += '<div style="font-size:11px;color:var(--muted);margin-top:4px">ðŸ“… Scadenza: ' + displayDate(z.scadenza) + '</div>';
       html += '</div>';
     }
   }
-  showDynamicModal('🛂 ZTL Autorizzate - ' + v.targa, html);
+  showDynamicModal('ðŸ›‚ ZTL Autorizzate - ' + v.targa, html);
 }
 
 // ========== MODAL DOCUMENTI ==========
@@ -3667,21 +3667,21 @@ function openDocsModal(targa) {
   var docs = v.docs || [];
   var html = '';
   if (docs.length === 0) {
-    html = '<div class="empty"><div class="empty-icon">📄</div><div>Nessun documento disponibile</div></div>';
+    html = '<div class="empty"><div class="empty-icon">ðŸ“„</div><div>Nessun documento disponibile</div></div>';
   } else {
     for (var i = 0; i < docs.length; i++) {
       html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">';
-      html += '<div><span style="font-weight:700">📄 ' + escapeHtml(docs[i].name) + '</span>';
+      html += '<div><span style="font-weight:700">ðŸ“„ ' + escapeHtml(docs[i].name) + '</span>';
       if (docs[i].date) html += '<div style="font-size:11px;color:var(--muted)">Caricato: ' + escapeHtml(docs[i].date) + '</div>';
       html += '</div>';
-      html += '<button class="abtn abtn-mec" style="padding:6px 12px;margin:0" onclick="viewDocByTarga(\'' + targa + '\',' + i + ')">👁️ Apri</button>';
+      html += '<button class="abtn abtn-mec" style="padding:6px 12px;margin:0" onclick="viewDocByTarga(\'' + targa + '\',' + i + ')">ðŸ‘ï¸ Apri</button>';
       html += '</div>';
     }
   }
   if (currentUser && currentUser.isAdmin) {
-    html += '<button class="token-gen-btn" style="margin-top:12px" onclick="uploadDocForVehicle(\'' + targa + '\')">📤 Carica nuovo documento</button>';
+    html += '<button class="token-gen-btn" style="margin-top:12px" onclick="uploadDocForVehicle(\'' + targa + '\')">ðŸ“¤ Carica nuovo documento</button>';
   }
-  showDynamicModal('📄 Documenti Veicolo - ' + v.targa, html);
+  showDynamicModal('ðŸ“„ Documenti Veicolo - ' + v.targa, html);
 }
 
 // ========== CARICA DOCUMENTO (SOLO ADMIN) ==========
@@ -3699,7 +3699,7 @@ function uploadDocForVehicle(targa) {
       if (!v.docs) v.docs = [];
       v.docs.push({ name: f.name, date: new Date().toISOString().slice(0,10), data: ev.target.result });
       saveFleet();
-      showToast('✅ Documento caricato');
+      showToast('âœ… Documento caricato');
       openDocsModal(targa);
     };
     r2.readAsDataURL(f);
@@ -3740,15 +3740,15 @@ function closeDynamicModal() {
 </script>
 
 <div class="overlay" id="ovImpostazioni"><div class="modal"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--acc)">⚙️ Impostazioni</div>
-  <button class="imp-btn" onclick="openLogFromSettings()">📋 Log Segnalazioni</button>
-  <button class="imp-btn" onclick="openInfoFromSettings()">ℹ️ Info App</button>
-  <button class="imp-btn" onclick="exportFleetCsv()">📤 Esporta DB CSV</button>
+  <div class="mtitle" style="color:var(--acc)">âš™ï¸ Impostazioni</div>
+  <button class="imp-btn" onclick="openLogFromSettings()">ðŸ“‹ Log Segnalazioni</button>
+  <button class="imp-btn" onclick="openInfoFromSettings()">â„¹ï¸ Info App</button>
+  <button class="imp-btn" onclick="exportFleetCsv()">ðŸ“¤ Esporta DB CSV</button>
   <div class="divider"></div>
   <!-- Tema -->
   <div style="background:#111;border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px">
     <div class="theme-toggle" style="margin:0;background:transparent;border:none;padding:0">
-      <div><div class="theme-toggle-label" style="font-size:14px">🌞 Tema chiaro</div></div>
+      <div><div class="theme-toggle-label" style="font-size:14px">ðŸŒž Tema chiaro</div></div>
       <label class="toggle-switch"><input type="checkbox" id="themeToggle2" onchange="applyTheme(this.checked)"><span class="toggle-slider"></span></label>
     </div>
   </div>
@@ -3756,28 +3756,28 @@ function closeDynamicModal() {
 </div></div>
 
 <div class="overlay" id="ovCidDb"><div class="modal" style="max-height:94vh;overflow-y:auto"><div class="mhandle"></div>
-  <div class="mtitle" style="color:var(--blue)">👤 Modifica DB CID</div>
+  <div class="mtitle" style="color:var(--blue)">ðŸ‘¤ Modifica DB CID</div>
 
   <!-- Tabella anagrafica -->
   <div style="margin-bottom:14px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
       <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)">Anagrafiche caricate (<span id="cidDbCount">0</span>)</div>
-      <input id="cidDbSearch" placeholder="🔍 Cerca CID / Nome..." style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:5px 10px;color:var(--text);font-size:11px;outline:none;width:160px" oninput="renderCidTable()">
+      <input id="cidDbSearch" placeholder="ðŸ” Cerca CID / Nome..." style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:5px 10px;color:var(--text);font-size:11px;outline:none;width:160px" oninput="renderCidTable()">
     </div>
     <div id="cidDbTable" style="max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:6px"></div>
   </div>
 
   <!-- Form aggiunta -->
   <div style="background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px">
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--acc);margin-bottom:10px">➕ Aggiungi / Modifica anagrafica</div>
-    <div class="em-field"><label>CID <span style="color:var(--red)">✱</span> <span style="font-size:10px;color:var(--muted)">(deve iniziare con 084)</span></label>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--acc);margin-bottom:10px">âž• Aggiungi / Modifica anagrafica</div>
+    <div class="em-field"><label>CID <span style="color:var(--red)">âœ±</span> <span style="font-size:10px;color:var(--muted)">(deve iniziare con 084)</span></label>
       <input id="cdbCid" placeholder="084XXXXXXX" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;font-family:monospace;outline:none" oninput="cdbValidateCid()" maxlength="10">
       <div id="cdbCidErr" style="font-size:10px;color:var(--red);margin-top:2px;display:none">CID non valido: deve iniziare con 084</div>
     </div>
-    <div class="em-field"><label>Cognome <span style="color:var(--red)">✱</span></label>
+    <div class="em-field"><label>Cognome <span style="color:var(--red)">âœ±</span></label>
       <input id="cdbCognome" placeholder="Cognome" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;outline:none">
     </div>
-    <div class="em-field"><label>Nome <span style="color:var(--red)">✱</span></label>
+    <div class="em-field"><label>Nome <span style="color:var(--red)">âœ±</span></label>
       <input id="cdbNome" placeholder="Nome" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;outline:none">
     </div>
     <div class="em-field"><label>Mail <span style="font-size:10px;color:var(--muted)">(opzionale)</span></label>
@@ -3789,7 +3789,7 @@ function closeDynamicModal() {
     <div class="em-field"><label>Targa auto <span style="font-size:10px;color:var(--muted)">(opzionale)</span></label>
       <input id="cdbTarga" placeholder="es. FC123AB" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;font-family:monospace;outline:none" oninput="this.value=this.value.toUpperCase()">
     </div>
-    <div class="em-field"><label>Ruolo <span style="color:var(--red)">✱</span></label>
+    <div class="em-field"><label>Ruolo <span style="color:var(--red)">âœ±</span></label>
       <select id="cdbRuolo" style="width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;outline:none">
         <option value="Assegnatario">Assegnatario</option>
         <option value="Ospite">Ospite (Guest)</option>
@@ -3799,23 +3799,23 @@ function closeDynamicModal() {
       </select>
     </div>
     <div style="display:flex;gap:8px;margin-top:12px">
-      <button onclick="cdbSalva()" style="flex:1;padding:10px;background:var(--acc);color:#0f1923;border:none;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer">💾 Salva</button>
-      <button onclick="cdbReset()" style="padding:10px 14px;background:var(--surf);border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:12px;cursor:pointer">✖ Pulisci</button>
+      <button onclick="cdbSalva()" style="flex:1;padding:10px;background:var(--acc);color:#0f1923;border:none;border-radius:6px;font-weight:700;font-size:13px;cursor:pointer">ðŸ’¾ Salva</button>
+      <button onclick="cdbReset()" style="padding:10px 14px;background:var(--surf);border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:12px;cursor:pointer">âœ– Pulisci</button>
     </div>
   </div>
 
   <!-- Export -->
-  <button onclick="exportCidDb()" style="width:100%;padding:11px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:6px;color:var(--blue);font-weight:700;font-size:13px;cursor:pointer;margin-bottom:6px">📤 Esporta DB CID (Excel)</button>
+  <button onclick="exportCidDb()" style="width:100%;padding:11px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);border-radius:6px;color:var(--blue);font-weight:700;font-size:13px;cursor:pointer;margin-bottom:6px">ðŸ“¤ Esporta DB CID (Excel)</button>
   <div class="mbtns"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div></div>
 
 <!-- MODALE GESTIONE EASYPARK -->
 <div class="overlay" id="ovGestioneEP"><div class="modal" style="max-height:92vh;overflow-y:auto">
   <div class="mhandle"></div>
-  <div class="mtitle">🅿 Gestione EasyPark</div>
-  <div class="msub" id="epCount">—</div>
-  <input id="epSearch" class="searchinput" placeholder="🔍 Cerca targa o nominativo…" oninput="renderEPList()" style="margin-bottom:12px;width:100%">
-  <button onclick="openAddEP()" style="width:100%;padding:11px;background:rgba(40,167,69,.12);border:1px solid rgba(40,167,69,.3);border-radius:6px;color:#28a745;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:12px">➕ Aggiungi veicolo EasyPark</button>
+  <div class="mtitle">ðŸ…¿ Gestione EasyPark</div>
+  <div class="msub" id="epCount">â€”</div>
+  <input id="epSearch" class="searchinput" placeholder="ðŸ” Cerca targa o nominativoâ€¦" oninput="renderEPList()" style="margin-bottom:12px;width:100%">
+  <button onclick="openAddEP()" style="width:100%;padding:11px;background:rgba(40,167,69,.12);border:1px solid rgba(40,167,69,.3);border-radius:6px;color:#28a745;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:12px">âž• Aggiungi veicolo EasyPark</button>
   <div id="epList" style="display:flex;flex-direction:column;gap:8px"></div>
   <div class="mbtns" style="margin-top:16px"><button class="bcx" onclick="closeAll()">Chiudi</button></div>
 </div></div>
@@ -3857,13 +3857,13 @@ function renderEPList() {
   } else {
     for (var i = 0; i < list.length; i++) {
       var e = list[i];
-      var nome = ((e.cognome||'') + ' ' + (e.nome||'')).trim() || '—';
+      var nome = ((e.cognome||'') + ' ' + (e.nome||'')).trim() || 'â€”';
       html += '<div style="background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">'
         + '<div><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:18px;font-weight:800;color:#28a745">' + escapeHtml(e.targa) + '</div>'
-        + '<div style="font-size:12px;color:var(--muted)">' + escapeHtml(nome) + (e.telefono ? ' · ' + escapeHtml(e.telefono) : '') + '</div></div>'
+        + '<div style="font-size:12px;color:var(--muted)">' + escapeHtml(nome) + (e.telefono ? ' Â· ' + escapeHtml(e.telefono) : '') + '</div></div>'
         + '<div style="display:flex;gap:6px">'
-        + '<button onclick="editEPEntry(\'' + escapeHtml(e.targa) + '\')" style="padding:6px 12px;border-radius:4px;border:1px solid rgba(240,165,0,.4);background:rgba(240,165,0,.08);color:var(--acc);font-size:12px;font-weight:700;cursor:pointer">✏️</button>'
-        + '<button onclick="deleteEPEntry(\'' + escapeHtml(e.targa) + '\')" style="padding:6px 12px;border-radius:4px;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.08);color:var(--red);font-size:12px;font-weight:700;cursor:pointer">🗑️</button>'
+        + '<button onclick="editEPEntry(\'' + escapeHtml(e.targa) + '\')" style="padding:6px 12px;border-radius:4px;border:1px solid rgba(240,165,0,.4);background:rgba(240,165,0,.08);color:var(--acc);font-size:12px;font-weight:700;cursor:pointer">âœï¸</button>'
+        + '<button onclick="deleteEPEntry(\'' + escapeHtml(e.targa) + '\')" style="padding:6px 12px;border-radius:4px;border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.08);color:var(--red);font-size:12px;font-weight:700;cursor:pointer">ðŸ—‘ï¸</button>'
         + '</div></div>';
     }
   }
@@ -3941,17 +3941,17 @@ const chatUI = `
 <div id="aiChat" style="position:fixed;bottom:80px;right:16px;width:360px;max-width:92vw;background:var(--surf);border:1px solid var(--acc);border-radius:14px;display:none;flex-direction:column;z-index:500;max-height:520px;box-shadow:0 8px 30px rgba(0,0,0,.6)">
   <div style="padding:12px 16px;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);border-bottom:2px solid var(--acc);border-radius:14px 14px 0 0;display:flex;align-items:center;justify-content:space-between">
     <div style="display:flex;align-items:center;gap:8px">
-      <span style="font-size:20px">🤖</span>
+      <span style="font-size:20px">ðŸ¤–</span>
       <div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--acc)">Assistente Flotta</div>
         <div id="aiRoleBadge" style="font-size:9px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase"></div>
       </div>
     </div>
-    <button onclick="toggleChat()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px">✕</button>
+    <button onclick="toggleChat()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px">âœ•</button>
   </div>
   <div id="chatMessages" style="flex:1;overflow-y:auto;padding:12px;min-height:240px;font-size:13px;line-height:1.5">
     <div style="background:var(--surf2);border-radius:10px;padding:12px;margin-bottom:8px;color:var(--muted);text-align:center;font-size:12px">
-      👋 Ciao! Chiedimi informazioni sulla flotta.
+      ðŸ‘‹ Ciao! Chiedimi informazioni sulla flotta.
       <div id="aiQuickActions" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center"></div>
     </div>
   </div>
@@ -3959,13 +3959,13 @@ const chatUI = `
     <input id="chatInput" placeholder="Scrivi un messaggio..." 
            style="flex:1;background:var(--surf2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:13px;font-family:'Barlow',sans-serif;outline:none"
            onkeydown="if(event.key==='Enter')sendChat()">
-    <button onclick="sendChat()" style="background:var(--acc);border:none;border-radius:8px;padding:10px 16px;color:#0f1923;font-weight:700;cursor:pointer;font-size:16px">➤</button>
+    <button onclick="sendChat()" style="background:var(--acc);border:none;border-radius:8px;padding:10px 16px;color:#0f1923;font-weight:700;cursor:pointer;font-size:16px">âž¤</button>
   </div>
 </div>
 
 <button onclick="toggleChat()" id="chatFab" 
   style="position:fixed;bottom:80px;right:16px;width:52px;height:52px;background:var(--acc);border:none;border-radius:50%;font-size:24px;cursor:pointer;z-index:499;box-shadow:0 4px 16px rgba(240,165,0,.3);display:none;align-items:center;justify-content:center">
-  💬
+  ðŸ’¬
 </button>`;
 
 document.body.insertAdjacentHTML('beforeend', chatUI);
@@ -4005,24 +4005,24 @@ function updateQuickActions() {
   let actions = [];
   if (isAdmin || isGestoreOp) {
     actions = [
-      { label: '📊 Stato flotta', query: 'stato flotta' },
-      { label: '🔧 Officina', query: 'quanti in officina' },
-      { label: '🔄 Scorte libere', query: 'scorte disponibili' },
-      { label: '📦 In arrivo', query: 'veicoli in arrivo' }
+      { label: 'ðŸ“Š Stato flotta', query: 'stato flotta' },
+      { label: 'ðŸ”§ Officina', query: 'quanti in officina' },
+      { label: 'ðŸ”„ Scorte libere', query: 'scorte disponibili' },
+      { label: 'ðŸ“¦ In arrivo', query: 'veicoli in arrivo' }
     ];
   } else if (isAssegnatario) {
     actions = [
-      { label: '🚗 Miei veicoli', query: 'miei veicoli' },
-      { label: '⛽ PIN carburante', query: 'pin carburante' },
-      { label: '🔧 Segnala guasto', query: 'come segnalo un guasto' },
-      { label: '📋 Scadenze', query: 'scadenze' }
+      { label: 'ðŸš— Miei veicoli', query: 'miei veicoli' },
+      { label: 'â›½ PIN carburante', query: 'pin carburante' },
+      { label: 'ðŸ”§ Segnala guasto', query: 'come segnalo un guasto' },
+      { label: 'ðŸ“‹ Scadenze', query: 'scadenze' }
     ];
   } else if (isOspite || isDriver) {
     actions = [
-      { label: '🔄 Mio veicolo', query: 'mio veicolo' },
-      { label: '🅿 Pool disponibili', query: 'pool disponibili' },
-      { label: '⛽ PIN', query: 'pin' },
-      { label: '📞 Referente', query: 'contatta referente' }
+      { label: 'ðŸ”„ Mio veicolo', query: 'mio veicolo' },
+      { label: 'ðŸ…¿ Pool disponibili', query: 'pool disponibili' },
+      { label: 'â›½ PIN', query: 'pin' },
+      { label: 'ðŸ“ž Referente', query: 'contatta referente' }
     ];
   }
   actionsDiv.innerHTML = actions.map(function(a) {
@@ -4037,7 +4037,7 @@ function sendChat() {
   if (!msg) return;
   addMessage('user', msg, 'Tu');
   input.value = '';
-  const typingId = addMessage('ai', '✍️ Sto analizzando...', 'Assistente');
+  const typingId = addMessage('ai', 'âœï¸ Sto analizzando...', 'Assistente');
   setTimeout(function() {
     const response = getAIResponse(msg);
     const typingEl = document.getElementById(typingId);
@@ -4098,27 +4098,27 @@ function getAIResponse(question) {
   if (targaMatch) {
     const targa = targaMatch[0].replace(/\s/g, '').toUpperCase();
     const v = findVehicle(targa);
-    if (!v) return '❌ Targa ' + targa + ' non trovata nella flotta.';
+    if (!v) return 'âŒ Targa ' + targa + ' non trovata nella flotta.';
     if (!isPowerUser && ruolo === 'Assegnatario') {
       const miei = getMieiVeicoli();
       if (!miei.find(function(x) { return x.targa === targa; })) {
-        return '🔒 Non hai i permessi per visualizzare ' + targa + '. È assegnata a un altro utente.';
+        return 'ðŸ”’ Non hai i permessi per visualizzare ' + targa + '. Ãˆ assegnata a un altro utente.';
       }
     }
-    let risposta = '✅ ' + v.targa + '\n';
-    risposta += '• Tipo: ' + (v.tipo || 'N/D') + '\n';
-    risposta += '• Sede: ' + (v.sede || 'N/D') + '\n';
-    risposta += '• Stato: ' + getStato(v) + '\n';
-    risposta += '• Pool: ' + (v.pool || 'Assegnata') + '\n';
-    if (v.carburante) risposta += '• Carburante: ' + v.carburante + '\n';
-    if (v.cognome || v.nome) risposta += '• Assegnatario: ' + [v.cognome, v.nome].filter(Boolean).join(' ') + '\n';
+    let risposta = 'âœ… ' + v.targa + '\n';
+    risposta += 'â€¢ Tipo: ' + (v.tipo || 'N/D') + '\n';
+    risposta += 'â€¢ Sede: ' + (v.sede || 'N/D') + '\n';
+    risposta += 'â€¢ Stato: ' + getStato(v) + '\n';
+    risposta += 'â€¢ Pool: ' + (v.pool || 'Assegnata') + '\n';
+    if (v.carburante) risposta += 'â€¢ Carburante: ' + v.carburante + '\n';
+    if (v.cognome || v.nome) risposta += 'â€¢ Assegnatario: ' + [v.cognome, v.nome].filter(Boolean).join(' ') + '\n';
     if (v.pin_eni || v.pin_q8) {
       if (isPowerUser) {
-        risposta += '• PIN ENI: ' + (v.pin_eni || '-') + ' | Q8: ' + (v.pin_q8 || '-') + '\n';
+        risposta += 'â€¢ PIN ENI: ' + (v.pin_eni || '-') + ' | Q8: ' + (v.pin_q8 || '-') + '\n';
       } else {
         const miei = getMieiVeicoli();
         if (miei.find(function(x) { return x.targa === v.targa; })) {
-          risposta += '• ⛽ PIN disponibile: usa il pulsante PIN nella card\n';
+          risposta += 'â€¢ â›½ PIN disponibile: usa il pulsante PIN nella card\n';
         }
       }
     }
@@ -4132,54 +4132,54 @@ function getAIResponse(question) {
       const off  = FLEET.filter(function(v) { return getStato(v) === 'Officina'; }).length;
       const arr  = FLEET.filter(function(v) { return getStato(v) === 'In arrivo'; }).length;
       const scorteLibere = FLEET.filter(function(v) { return v.pool === 'Scorta' && getStato(v) === 'Marciante' && isLibero(v); }).length;
-      return '📊 Stato Flotta\n\n' +
-        '✅ Marcianti: ' + marc + '\n' +
-        '🔧 In officina: ' + off + '\n' +
-        '📦 In arrivo: ' + arr + '\n' +
-        '🔄 Scorte libere: ' + scorteLibere + '\n' +
-        '📋 Totale: ' + FLEET.length + ' veicoli';
+      return 'ðŸ“Š Stato Flotta\n\n' +
+        'âœ… Marcianti: ' + marc + '\n' +
+        'ðŸ”§ In officina: ' + off + '\n' +
+        'ðŸ“¦ In arrivo: ' + arr + '\n' +
+        'ðŸ”„ Scorte libere: ' + scorteLibere + '\n' +
+        'ðŸ“‹ Totale: ' + FLEET.length + ' veicoli';
     }
     if (q.indexOf('officina') !== -1 || q.indexOf('guasti') !== -1) {
       const offVehicles = FLEET.filter(function(v) { return getStato(v) === 'Officina'; });
-      if (!offVehicles.length) return '✅ Nessun veicolo in officina al momento.';
-      let risp = '🔧 ' + n(offVehicles.length) + ' in officina:\n';
+      if (!offVehicles.length) return 'âœ… Nessun veicolo in officina al momento.';
+      let risp = 'ðŸ”§ ' + n(offVehicles.length) + ' in officina:\n';
       offVehicles.slice(0, 8).forEach(function(v) {
-        risp += '• ' + v.targa + ' - ' + (v.sede || 'N/D') + (v.officina ? ' → ' + v.officina : '') + '\n';
+        risp += 'â€¢ ' + v.targa + ' - ' + (v.sede || 'N/D') + (v.officina ? ' â†’ ' + v.officina : '') + '\n';
       });
       if (offVehicles.length > 8) risp += '...e altri ' + (offVehicles.length - 8) + '.\n';
       return risp.trim();
     }
     if (q.indexOf('scorta') !== -1 && (q.indexOf('libera') !== -1 || q.indexOf('disponibile') !== -1)) {
       const scorte = FLEET.filter(function(v) { return v.pool === 'Scorta' && getStato(v) === 'Marciante' && isLibero(v); });
-      if (!scorte.length) return '⚠️ Nessuna scorta libera disponibile.';
+      if (!scorte.length) return 'âš ï¸ Nessuna scorta libera disponibile.';
       const bySede = {};
       scorte.forEach(function(v) {
         const s = v.sede || 'N/D';
         if (!bySede[s]) bySede[s] = [];
         bySede[s].push(v);
       });
-      let risp = '🔄 ' + n(scorte.length) + ' scorte libere:\n';
+      let risp = 'ðŸ”„ ' + n(scorte.length) + ' scorte libere:\n';
       Object.keys(bySede).forEach(function(sede) {
-        risp += '\n📍 ' + sede + ' (' + bySede[sede].length + '):\n';
-        bySede[sede].forEach(function(v) { risp += '  • ' + v.targa + ' - ' + (v.tipo || 'N/D') + '\n'; });
+        risp += '\nðŸ“ ' + sede + ' (' + bySede[sede].length + '):\n';
+        bySede[sede].forEach(function(v) { risp += '  â€¢ ' + v.targa + ' - ' + (v.tipo || 'N/D') + '\n'; });
       });
       return risp.trim();
     }
     if (q.indexOf('in arrivo') !== -1 || q.indexOf('arrivo') !== -1) {
       const arrVehicles = FLEET.filter(function(v) { return getStato(v) === 'In arrivo'; });
-      if (!arrVehicles.length) return '📦 Nessun veicolo in arrivo.';
-      let risp = '📦 ' + n(arrVehicles.length) + ' in arrivo:\n';
-      arrVehicles.forEach(function(v) { risp += '• ' + v.targa + ' - ' + (v.sede || 'N/D') + ' - ' + (v.tipo || 'N/D') + '\n'; });
+      if (!arrVehicles.length) return 'ðŸ“¦ Nessun veicolo in arrivo.';
+      let risp = 'ðŸ“¦ ' + n(arrVehicles.length) + ' in arrivo:\n';
+      arrVehicles.forEach(function(v) { risp += 'â€¢ ' + v.targa + ' - ' + (v.sede || 'N/D') + ' - ' + (v.tipo || 'N/D') + '\n'; });
       return risp.trim();
     }
     if (q.indexOf('sede') !== -1 || q.indexOf('palermo') !== -1 || q.indexOf('trapani') !== -1 || q.indexOf('agrigento') !== -1) {
       const searchSede = ['palermo','trapani','agrigento','caltanissetta','sciacca','bagheria'].find(function(s) { return q.indexOf(s) !== -1; }) || '';
       if (searchSede) {
         const sedeVehicles = FLEET.filter(function(v) { return (v.sede || '').toLowerCase().indexOf(searchSede) !== -1; });
-        if (!sedeVehicles.length) return '📍 Nessun veicolo trovato a ' + searchSede.charAt(0).toUpperCase() + searchSede.slice(1) + '.';
+        if (!sedeVehicles.length) return 'ðŸ“ Nessun veicolo trovato a ' + searchSede.charAt(0).toUpperCase() + searchSede.slice(1) + '.';
         const marc = sedeVehicles.filter(function(v) { return getStato(v) === 'Marciante'; }).length;
         const off  = sedeVehicles.filter(function(v) { return getStato(v) === 'Officina'; }).length;
-        return '📍 ' + searchSede.charAt(0).toUpperCase() + searchSede.slice(1) + ': ' + n(sedeVehicles.length) + '\n✅ Marcianti: ' + marc + '\n🔧 Officina: ' + off;
+        return 'ðŸ“ ' + searchSede.charAt(0).toUpperCase() + searchSede.slice(1) + ': ' + n(sedeVehicles.length) + '\nâœ… Marcianti: ' + marc + '\nðŸ”§ Officina: ' + off;
       }
     }
   }
@@ -4188,40 +4188,40 @@ function getAIResponse(question) {
   if (ruolo === 'Assegnatario' && !isAdmin) {
     if (q.indexOf('miei') !== -1 || q.indexOf('mio veicolo') !== -1) {
       const miei = getMieiVeicoli();
-      if (!miei.length) return '🚗 Non hai veicoli assegnati al momento.';
-      let risp = '🚗 I tuoi veicoli (' + miei.length + '):\n';
+      if (!miei.length) return 'ðŸš— Non hai veicoli assegnati al momento.';
+      let risp = 'ðŸš— I tuoi veicoli (' + miei.length + '):\n';
       miei.forEach(function(v) {
         const st = getStato(v);
-        const emoji = st === 'Marciante' ? '✅' : st === 'Officina' ? '🔧' : '📦';
-        risp += '• ' + emoji + ' ' + v.targa + ' - ' + (v.tipo || 'N/D') + ' (' + st + ')\n';
+        const emoji = st === 'Marciante' ? 'âœ…' : st === 'Officina' ? 'ðŸ”§' : 'ðŸ“¦';
+        risp += 'â€¢ ' + emoji + ' ' + v.targa + ' - ' + (v.tipo || 'N/D') + ' (' + st + ')\n';
       });
       return risp.trim();
     }
     if (q.indexOf('pin') !== -1 || q.indexOf('carburante') !== -1) {
       const miei = getMieiVeicoli();
       const conPin = miei.filter(function(v) { return v.pin_eni || v.pin_q8; });
-      if (!conPin.length) return '⛽ Nessun PIN carburante disponibile per i tuoi veicoli.';
-      let risp = '⛽ PIN Carburante:\n';
+      if (!conPin.length) return 'â›½ Nessun PIN carburante disponibile per i tuoi veicoli.';
+      let risp = 'â›½ PIN Carburante:\n';
       conPin.forEach(function(v) {
-        risp += '• ' + v.targa + ': ENI ' + (v.pin_eni || '-') + ' | Q8 ' + (v.pin_q8 || '-') + '\n';
+        risp += 'â€¢ ' + v.targa + ': ENI ' + (v.pin_eni || '-') + ' | Q8 ' + (v.pin_q8 || '-') + '\n';
       });
       return risp.trim();
     }
     if (q.indexOf('scaden') !== -1 || q.indexOf('revisione') !== -1 || q.indexOf('noleggio') !== -1) {
       const miei = getMieiVeicoli();
       const conScadenze = miei.filter(function(v) { return v.scad_revisione || v.fine_noleggio; });
-      if (!conScadenze.length) return '📋 Nessuna scadenza imminente per i tuoi veicoli.';
-      let risp = '📋 Scadenze:\n';
+      if (!conScadenze.length) return 'ðŸ“‹ Nessuna scadenza imminente per i tuoi veicoli.';
+      let risp = 'ðŸ“‹ Scadenze:\n';
       conScadenze.forEach(function(v) {
         if (v.scad_revisione) {
           const d = new Date(v.scad_revisione);
           const gg = Math.ceil((d - new Date()) / 86400000);
-          risp += '• ' + v.targa + ': Revisione ' + (typeof displayDate === 'function' ? displayDate(v.scad_revisione) : v.scad_revisione) + ' ' + (gg < 0 ? '🔴 SCADUTA' : gg <= 30 ? '🟡 tra ' + gg + 'gg' : '✅') + '\n';
+          risp += 'â€¢ ' + v.targa + ': Revisione ' + (typeof displayDate === 'function' ? displayDate(v.scad_revisione) : v.scad_revisione) + ' ' + (gg < 0 ? 'ðŸ”´ SCADUTA' : gg <= 30 ? 'ðŸŸ¡ tra ' + gg + 'gg' : 'âœ…') + '\n';
         }
         if (v.fine_noleggio) {
           const d = new Date(v.fine_noleggio);
           const gg = Math.ceil((d - new Date()) / 86400000);
-          risp += '• ' + v.targa + ': Noleggio ' + (typeof displayDate === 'function' ? displayDate(v.fine_noleggio) : v.fine_noleggio) + ' ' + (gg < 0 ? '🔴 SCADUTO' : gg <= 30 ? '🟡 tra ' + gg + 'gg' : '✅') + '\n';
+          risp += 'â€¢ ' + v.targa + ': Noleggio ' + (typeof displayDate === 'function' ? displayDate(v.fine_noleggio) : v.fine_noleggio) + ' ' + (gg < 0 ? 'ðŸ”´ SCADUTO' : gg <= 30 ? 'ðŸŸ¡ tra ' + gg + 'gg' : 'âœ…') + '\n';
         }
       });
       return risp.trim();
@@ -4232,11 +4232,11 @@ function getAIResponse(question) {
   if (ruolo === 'Ospite' || (currentUser && currentUser.isGuest) || ruolo === 'Driver Aut.') {
     if (q.indexOf('mio') !== -1 && q.indexOf('veicolo') !== -1) {
       const miei = getMieiVeicoli();
-      if (!miei.length) return '🚗 Non hai veicoli in carico al momento. Usa i pulsanti in basso per prenotare un veicolo dai pool.';
-      let risp = '🚗 Veicolo in carico:\n';
+      if (!miei.length) return 'ðŸš— Non hai veicoli in carico al momento. Usa i pulsanti in basso per prenotare un veicolo dai pool.';
+      let risp = 'ðŸš— Veicolo in carico:\n';
       miei.forEach(function(v) {
-        risp += '• ' + v.targa + ' - ' + (v.tipo || 'N/D') + '\n';
-        if (v.pin_eni || v.pin_q8) risp += '  ⛽ PIN disponibile nella card veicolo\n';
+        risp += 'â€¢ ' + v.targa + ' - ' + (v.tipo || 'N/D') + '\n';
+        if (v.pin_eni || v.pin_q8) risp += '  â›½ PIN disponibile nella card veicolo\n';
       });
       return risp.trim();
     }
@@ -4245,74 +4245,74 @@ function getAIResponse(question) {
         const scorte  = FLEET.filter(function(v) { return v.pool === 'Scorta'   && v.sede === mySede && getStato(v) === 'Marciante' && isLibero(v); });
         const speciali = FLEET.filter(function(v) { return v.pool === 'Speciali' && v.sede === mySede && getStato(v) === 'Marciante'; });
         const tecnici  = FLEET.filter(function(v) { return v.pool === 'Tecnico'  && v.sede === mySede && getStato(v) === 'Marciante'; });
-        return '🅿 Pool a ' + mySede + ':\n' +
-          '🔄 Scorta: ' + scorte.length + ' disponibili\n' +
-          '⭐ Speciali: ' + speciali.length + '\n' +
-          '👷 Tecnici: ' + tecnici.length + '\n\n' +
+        return 'ðŸ…¿ Pool a ' + mySede + ':\n' +
+          'ðŸ”„ Scorta: ' + scorte.length + ' disponibili\n' +
+          'â­ Speciali: ' + speciali.length + '\n' +
+          'ðŸ‘· Tecnici: ' + tecnici.length + '\n\n' +
           'Usa i pulsanti in basso per prenotare.';
       }
-      return '📍 Seleziona prima una sede per vedere i pool disponibili.';
+      return 'ðŸ“ Seleziona prima una sede per vedere i pool disponibili.';
     }
     if (q.indexOf('referente') !== -1 || q.indexOf('contatta') !== -1) {
       if (typeof getReferente === 'function') {
         const ref = getReferente(mySede || 'Palermo');
-        if (ref) return '📞 Referente:\n' + ref.nome + '\n📱 ' + ref.tel;
+        if (ref) return 'ðŸ“ž Referente:\n' + ref.nome + '\nðŸ“± ' + ref.tel;
       }
-      return '⚠️ Referente non configurato per questa sede.';
+      return 'âš ï¸ Referente non configurato per questa sede.';
     }
   }
 
   // ========== DOMANDE COMUNI ==========
   if (q.indexOf('come') !== -1 && q.indexOf('segnal') !== -1 && q.indexOf('guasto') !== -1) {
-    return '🔧 Come segnalare un guasto:\n\n' +
-      '1️⃣ Nella card del veicolo, clicca 🔧 Segnala\n' +
-      '2️⃣ Scegli ⚠️ Guasto\n' +
-      '3️⃣ Compila descrizione e indica se è bloccante\n' +
-      '4️⃣ Se bloccante, scegli una sostitutiva\n' +
-      '5️⃣ Riceverai il PIN della sostitutiva\n\n' +
-      '📋 Ricorda di compilare il DEN!';
+    return 'ðŸ”§ Come segnalare un guasto:\n\n' +
+      '1ï¸âƒ£ Nella card del veicolo, clicca ðŸ”§ Segnala\n' +
+      '2ï¸âƒ£ Scegli âš ï¸ Guasto\n' +
+      '3ï¸âƒ£ Compila descrizione e indica se Ã¨ bloccante\n' +
+      '4ï¸âƒ£ Se bloccante, scegli una sostitutiva\n' +
+      '5ï¸âƒ£ Riceverai il PIN della sostitutiva\n\n' +
+      'ðŸ“‹ Ricorda di compilare il DEN!';
   }
   if (q.indexOf('come') !== -1 && q.indexOf('incidente') !== -1) {
-    return '🚨 In caso di incidente:\n\n' +
-      '1️⃣ Clicca 🔧 Segnala → 🚨 Incidente\n' +
-      '2️⃣ Compila tutti i campi obbligatori\n' +
-      '3️⃣ Se bloccante: chiama subito Leasys 800 959 950\n' +
-      '4️⃣ Compila il DEN entro 24 ore\n' +
-      '5️⃣ Scegli una sostitutiva se disponibile';
+    return 'ðŸš¨ In caso di incidente:\n\n' +
+      '1ï¸âƒ£ Clicca ðŸ”§ Segnala â†’ ðŸš¨ Incidente\n' +
+      '2ï¸âƒ£ Compila tutti i campi obbligatori\n' +
+      '3ï¸âƒ£ Se bloccante: chiama subito Leasys 800 959 950\n' +
+      '4ï¸âƒ£ Compila il DEN entro 24 ore\n' +
+      '5ï¸âƒ£ Scegli una sostitutiva se disponibile';
   }
   if (q.indexOf('aiuto') !== -1 || q.indexOf('help') !== -1 || q.indexOf('cosa puoi fare') !== -1) {
     if (isPowerUser) {
-      return '🤖 Cosa posso fare per te (Admin):\n\n' +
-        '• "Stato flotta" - Riepilogo generale\n' +
-        '• "Quanti in officina?" - Veicoli fermi\n' +
-        '• "Scorte libere" - Disponibilità scorte\n' +
-        '• "Cerca targa FC123AB" - Dettaglio veicolo\n' +
-        '• "Veicoli in arrivo" - Prossimi arrivi\n' +
-        '• "Situazione Palermo" - Dettaglio per sede';
+      return 'ðŸ¤– Cosa posso fare per te (Admin):\n\n' +
+        'â€¢ "Stato flotta" - Riepilogo generale\n' +
+        'â€¢ "Quanti in officina?" - Veicoli fermi\n' +
+        'â€¢ "Scorte libere" - DisponibilitÃ  scorte\n' +
+        'â€¢ "Cerca targa FC123AB" - Dettaglio veicolo\n' +
+        'â€¢ "Veicoli in arrivo" - Prossimi arrivi\n' +
+        'â€¢ "Situazione Palermo" - Dettaglio per sede';
     } else if (ruolo === 'Assegnatario') {
-      return '🤖 Cosa posso fare per te:\n\n' +
-        '• "Miei veicoli" - Lista veicoli assegnati\n' +
-        '• "PIN carburante" - Codici rifornimento\n' +
-        '• "Scadenze" - Revisioni e noleggi\n' +
-        '• "Come segnalo un guasto?" - Procedura';
+      return 'ðŸ¤– Cosa posso fare per te:\n\n' +
+        'â€¢ "Miei veicoli" - Lista veicoli assegnati\n' +
+        'â€¢ "PIN carburante" - Codici rifornimento\n' +
+        'â€¢ "Scadenze" - Revisioni e noleggi\n' +
+        'â€¢ "Come segnalo un guasto?" - Procedura';
     } else {
-      return '🤖 Cosa posso fare per te:\n\n' +
-        '• "Mio veicolo" - Dettagli veicolo in carico\n' +
-        '• "Pool disponibili" - Veicoli prenotabili\n' +
-        '• "Contatta referente" - Numeri utili';
+      return 'ðŸ¤– Cosa posso fare per te:\n\n' +
+        'â€¢ "Mio veicolo" - Dettagli veicolo in carico\n' +
+        'â€¢ "Pool disponibili" - Veicoli prenotabili\n' +
+        'â€¢ "Contatta referente" - Numeri utili';
     }
   }
   if (q.indexOf('grazi') !== -1 || q.indexOf('ciao') !== -1 || q.indexOf('salve') !== -1) {
     const nomi = currentUser ? [currentUser.nome, currentUser.cognome].filter(Boolean).join(' ') : '';
-    return '👋 Ciao' + (nomi ? ' ' + nomi : '') + '! Sono l\'assistente virtuale della flotta Sicilia Ovest. Come posso aiutarti?';
+    return 'ðŸ‘‹ Ciao' + (nomi ? ' ' + nomi : '') + '! Sono l\'assistente virtuale della flotta Sicilia Ovest. Come posso aiutarti?';
   }
 
   // ========== FALLBACK ==========
-  return '🤔 Non ho capito. Puoi chiedermi:\n\n' +
-    '• "Stato flotta" (solo admin)\n' +
-    '• "Miei veicoli"\n' +
-    '• "Cerca targa FC123AB"\n' +
-    '• "Aiuto" per vedere tutte le opzioni';
+  return 'ðŸ¤” Non ho capito. Puoi chiedermi:\n\n' +
+    'â€¢ "Stato flotta" (solo admin)\n' +
+    'â€¢ "Miei veicoli"\n' +
+    'â€¢ "Cerca targa FC123AB"\n' +
+    'â€¢ "Aiuto" per vedere tutte le opzioni';
 }
 
 // 6. INTEGRAZIONE COL LOGIN - Wrap di startApp()
@@ -4323,19 +4323,19 @@ startApp = function() {
   const badge = document.getElementById('aiRoleBadge');
   if (badge && currentUser) {
     if (currentUser.isAdmin) {
-      badge.textContent = '👑 Amministratore';
+      badge.textContent = 'ðŸ‘‘ Amministratore';
       badge.style.color = 'var(--acc)';
     } else if (currentUser.ruolo === 'Gestore Op.') {
-      badge.textContent = '👁️ Gestore Operativo';
+      badge.textContent = 'ðŸ‘ï¸ Gestore Operativo';
       badge.style.color = '#a855f7';
     } else if (currentUser.ruolo === 'Driver Aut.') {
-      badge.textContent = '🚗 Driver Autonomo';
+      badge.textContent = 'ðŸš— Driver Autonomo';
       badge.style.color = '#3b82f6';
     } else if (currentUser.ruolo === 'Ospite' || currentUser.isGuest) {
-      badge.textContent = '👤 Ospite';
+      badge.textContent = 'ðŸ‘¤ Ospite';
       badge.style.color = '#f59e0b';
     } else {
-      badge.textContent = '👤 Assegnatario';
+      badge.textContent = 'ðŸ‘¤ Assegnatario';
       badge.style.color = 'var(--muted)';
     }
   }
@@ -4352,21 +4352,21 @@ confirmLogout = function() {
   chatOpen = false;
 };
 
-console.log('✅ Assistente AI role-aware caricato!');
+console.log('âœ… Assistente AI role-aware caricato!');
 </script>
 
 <!-- OVERLAY GESTIONE ALLEGATI ADMIN -->
 <div class="overlay" id="ovAllegati"><div class="modal" style="max-height:92vh;overflow-y:auto">
   <div class="mhandle"></div>
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-    <div class="mtitle">📎 Allegati PDF</div>
-    <button onclick="closeAll()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px">✕</button>
+    <div class="mtitle">ðŸ“Ž Allegati PDF</div>
+    <button onclick="closeAll()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px">âœ•</button>
   </div>
   <div style="font-size:11px;color:var(--muted);margin-bottom:14px;letter-spacing:.5px">Visione globale documenti allegati ai veicoli</div>
   <!-- Barra ricerca -->
   <div style="position:relative;margin-bottom:12px">
-    <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px">🔍</span>
-    <input id="allegatiSearch" type="text" placeholder="Cerca targa, assegnatario, documento…" oninput="renderAllegati()"
+    <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px">ðŸ”</span>
+    <input id="allegatiSearch" type="text" placeholder="Cerca targa, assegnatario, documentoâ€¦" oninput="renderAllegati()"
       style="width:100%;padding:10px 12px 10px 34px;background:var(--surf2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:'Barlow',sans-serif;outline:none">
   </div>
   <!-- Contatore -->
@@ -4376,7 +4376,7 @@ console.log('✅ Assistente AI role-aware caricato!');
 </div></div>
 
 <script>
-// ─── GESTIONE ALLEGATI ADMIN ───────────────────────────────────────────────
+// â”€â”€â”€ GESTIONE ALLEGATI ADMIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function openAllegatiAdmin() {
   if (!currentUser || !currentUser.isAdmin) { showToast('Accesso riservato', true); return; }
@@ -4424,12 +4424,12 @@ function renderAllegati() {
     if (conDocs.length === 0) {
       statEl.textContent = query ? 'Nessun risultato' : 'Nessun allegato presente';
     } else {
-      statEl.textContent = conDocs.length + ' veicol' + (conDocs.length === 1 ? 'o' : 'i') + ' · ' + totDocs + ' document' + (totDocs === 1 ? 'o' : 'i');
+      statEl.textContent = conDocs.length + ' veicol' + (conDocs.length === 1 ? 'o' : 'i') + ' Â· ' + totDocs + ' document' + (totDocs === 1 ? 'o' : 'i');
     }
   }
 
   if (conDocs.length === 0) {
-    listEl.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--muted)"><div style="font-size:36px;margin-bottom:8px">📂</div><div style="font-size:13px">' + (query ? 'Nessun risultato per "' + escapeHtml(query) + '"' : 'Nessun documento allegato ai veicoli') + '</div></div>';
+    listEl.innerHTML = '<div style="text-align:center;padding:30px 0;color:var(--muted)"><div style="font-size:36px;margin-bottom:8px">ðŸ“‚</div><div style="font-size:13px">' + (query ? 'Nessun risultato per "' + escapeHtml(query) + '"' : 'Nessun documento allegato ai veicoli') + '</div></div>';
     return;
   }
 
@@ -4438,8 +4438,8 @@ function renderAllegati() {
 
   var html = '';
   conDocs.forEach(function(v) {
-    var targa   = v.targa || '—';
-    var assegn  = ((v.cognome || '') + ' ' + (v.nome || '')).trim() || '—';
+    var targa   = v.targa || 'â€”';
+    var assegn  = ((v.cognome || '') + ' ' + (v.nome || '')).trim() || 'â€”';
     var sede    = v.sede || '';
     var docs    = v.docs || [];
 
@@ -4449,7 +4449,7 @@ function renderAllegati() {
     html += '<div>';
     html += '<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:800;color:var(--acc)">' + escapeHtml(targa) + '</span>';
     if (sede) html += ' <span style="font-size:10px;color:var(--muted);margin-left:6px">' + escapeHtml(sede) + '</span>';
-    html += '<div style="font-size:11px;color:var(--muted);margin-top:2px">👤 ' + escapeHtml(assegn) + '</div>';
+    html += '<div style="font-size:11px;color:var(--muted);margin-top:2px">ðŸ‘¤ ' + escapeHtml(assegn) + '</div>';
     html += '</div>';
     html += '<span style="background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3);border-radius:4px;font-size:10px;font-weight:700;padding:2px 8px">' + docs.length + ' PDF</span>';
     html += '</div>';
@@ -4459,7 +4459,7 @@ function renderAllegati() {
       var fname = doc.name || 'documento_' + (idx + 1);
       var fdate = doc.date || '';
       html += '<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)">';
-      html += '<span style="font-size:16px;flex-shrink:0">📄</span>';
+      html += '<span style="font-size:16px;flex-shrink:0">ðŸ“„</span>';
       html += '<span style="flex:1;font-size:12px;font-family:monospace;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escapeHtml(fname) + '</span>';
       if (fdate) html += '<span style="font-size:10px;color:var(--muted);flex-shrink:0">' + escapeHtml(fdate) + '</span>';
       html += '<button onclick="allegatiViewDoc(\'' + escapeHtml(targa) + '\',' + idx + ')" style="font-size:10px;font-weight:700;padding:4px 10px;border-radius:0;border:none;cursor:pointer;background:rgba(59,130,246,.15);color:var(--blue);flex-shrink:0">Apri</button>';
