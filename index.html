@@ -2804,7 +2804,7 @@ function startApp() {
   _s('btnGestEP',     isAdmin ? 'block' : 'none');
   _s('tab-canc',      isAdmin ? 'flex' : 'none');
   _s('tab-allegati',  isAdmin ? 'flex' : 'none');
-  if (isAdmin) { setTimeout(function(){ if(typeof updateAllegatiBadge==='function') updateAllegatiBadge(); }, 400); }
+  if (isAdmin) { setTimeout(updateAllegatiBadge, 200); }
   // Banner Gestore Op. con switch flotta
   var goBanner = document.getElementById('gestoreOpBanner');
   if (goBanner) _s('gestoreOpBanner', isGestoreOp ? 'block' : 'none');
