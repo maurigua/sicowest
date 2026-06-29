@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>SicOvest Next V49</title>
+
+<!-- ============================================================
+     SICOVEST NEXT V49 — index.html
+     
+     Struttura moduli:
+     css/
+       base.css        → reset, variabili, layout globale
+       components.css  → tabella, badge, PIN, paginazione
+       overlays.css    → modal, form, bottoni, toast
+     js/
+       config.js       → GAS_URL, LKEY, costanti
+       assets.js       → foto veicoli e logo base64
+       db.js           → EMBEDDED_3NF (fallback offline)
+       state.js        → S (stato) + utility (p8, esc, $id...)
+       sync.js         → loadData, saveLocal, doSync, pushGAS
+       auth.js         → login, logout, startApp, Guest
+       app.js          → renderApp, switchTab, KPI, updateKpi
+       fleet.js        → filterFleet, renderFlotta, sort, pagina
+       vehicle.js      → openVeh, openEV, evSave, deleteV
+       cid.js          → gestione anagrafiche CID
+       report.js       → segnalazioni, ticket, rilascia scorta
+       dashboard.js    → dashboard, mappa, manutenzioni
+       reports.js      → export CSV, renderReports
+       settings.js     → impostazioni, swap, docs, log, QR
+     ============================================================ -->
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/overlays.css">
+</head>
+<body>
+
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loading"><div class="spinner"></div><span id="loading-msg">Caricamento...</span></div>
+<!-- SYNC BAR -->
+<div id="sync-bar"><span id="sync-msg">🔄 Sincronizzazione...</span></div>
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- LOGIN PAGE -->
+<div id="login-page">
+  <div class="lbox">
+    <img class="l-logo" id="login-logo" alt="Flotta Sic. OVEST">
+    <div class="l-title">SicOvest Next</div>
+    <div class="l-sub">Gestione Flotta Sicilia Ovest — V49</div>
+    <div class="l-tabs">
+      <div class="ltab active" id="ltab-cid" onclick="loginTab('cid')">Accedi con CID</div>
+      <div class="ltab" id="ltab-guest" onclick="loginTab('guest')">Ospite Pool</div>
+    </div>
+    <div id="login-cid-form">
+      <div class="fg">
+        <label class="fl">Matricola (CID)</label>
+        <input class="fi" id="l-cid" type="text" placeholder="Es. 08412345" maxlength="8" inputmode="numeric" autocomplete="off">
+      </div>
+      <div class="fg">
+        <label class="fl">PIN (4 cifre)</label>
+        <input class="fi" id="l-pin" type="password" placeholder="••••" maxlength="4" inputmode="numeric" autocomplete="off">
+      </div>
+      <button class="btn btn-p btn-full" style="margin-top:4px;" onclick="doLogin()">🔐 Accedi</button>
+    </div>
+    <div id="login-guest-form" style="display:none">
+      <div class="fg"><label class="fl">Nome</label><input class="fi" id="g-nome" type="text" placeholder="Nome" autocomplete="off"></div>
+      <div class="fg"><label class="fl">Cognome</label><input class="fi" id="g-cognome" type="text" placeholder="Cognome" autocomplete="off"></div>
+      <div class="fg"><label class="fl">Sede</label><select class="fi" id="g-sede"><option value="">Seleziona...</option></select></div>
+      <div class="fg"><label class="fl">Motivazione</label>
+        <select class="fi" id="g-motivo">
+          <option value="Tagliando">🔧 Tagliando auto propria</option>
+          <option value="Guasto">⚠️ Guasto auto propria</option>
+          <option value="Supporto">📋 Supporto temporaneo</option>
+          <option value="Altro">🔹 Altro</option>
+        </select>
+      </div>
+      <button class="btn btn-s btn-full" onclick="doGuestLogin()">🚗 Accedi come Ospite</button>
+    </div>
+    <div class="l-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <img id="tb-logo" alt="SicOvest" style="height:34px;border-radius:4px;object-fit:contain;">
+    <div id="tb-info">
+      <div id="tb-title">SicOvest Next</div>
+      <div id="tb-user"></div>
+    </div>
+    <div style="flex:1"></div>
+    <div id="tb-sync" onclick="doSync()" title="Sincronizza">🔄</div>
+    <div id="tb-menu" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <!-- KPI BAR -->
+  <div id="kpi-bar">
+    <div class="kpi-item"><div class="kpi-num" id="kpi-van">—</div><div class="kpi-lbl">Van</div></div>
+    <div class="kpi-sep"></div>
+    <div class="kpi-item"><div class="kpi-num" id="kpi-car">—</div><div class="kpi-lbl">Car</div></div>
+    <div class="kpi-sep"></div>
+    <div class="kpi-item"><div class="kpi-num" id="kpi-truck">—</div><div class="kpi-lbl">Truck</div></div>
+    <div class="kpi-sep"></div>
+    <div class="kpi-item"><div class="kpi-num y" id="kpi-scorta">—</div><div class="kpi-lbl">Scorta</div></div>
+    <div class="kpi-sep"></div>
+    <div class="kpi-item"><div class="kpi-num g" id="kpi-tec">—</div><div class="kpi-lbl">Tecnico</div></div>
+    <div class="kpi-sep"></div>
+    <div class="kpi-item"><div class="kpi-num r" id="kpi-off">—</div><div class="kpi-lbl">Officina</div></div>
+    <div style="flex:1"></div>
+    <div id="kpi-total"><div class="kpi-num" id="kpi-tot">—</div><div class="kpi-lbl">Veicoli</div></div>
+  </div>
+
+  <!-- NAVTABS -->
+  <div id="navtabs">
+    <div class="ntab active" data-tab="flotta" onclick="switchTab('flotta')">🚗 Flotta</div>
+    <div class="ntab" data-tab="mappa" onclick="switchTab('mappa')">🗺 Mappa</div>
+    <div class="ntab" data-tab="dashboard" onclick="switchTab('dashboard')">📊 Dashboard</div>
+    <div class="ntab" data-tab="manut" onclick="switchTab('manut')">🔧 Manut.</div>
+    <div class="ntab" data-tab="reports" onclick="switchTab('reports')">📋 Reports</div>
+    <div class="ntab" data-tab="impost" onclick="switchTab('impost')">⚙️ Impost.</div>
+    <div class="ntab" id="tab-tkt-nav" data-tab="ticket" onclick="switchTab('ticket')" style="display:none">
+      🎫 Ticket <span class="nbadge" id="tkt-badge">0</span>
+    </div>
+  </div>
+
+  <!-- FILTRI -->
+  <div id="filtribar">
+    <button class="fbtn active" id="f-tutti" onclick="setFilter('tutti')">Tutti</button>
+    <button class="fbtn" id="f-assegnati" onclick="setFilter('assegnati')">Assegnati</button>
+    <button class="fbtn" id="f-scorta" onclick="setFilter('scorta')">Scorta</button>
+    <button class="fbtn" id="f-tecnico" onclick="setFilter('tecnico')">Tecnico</button>
+    <button class="fbtn" id="f-speciali" onclick="setFilter('speciali')">Speciali</button>
+    <button class="fbtn" id="f-officina" onclick="setFilter('officina')">Officina</button>
+  </div>
+
+  <!-- SEARCHBAR -->
+  <div id="searchwrap">
+    <span style="color:var(--muted);font-size:13px;flex-shrink:0;">🔍</span>
+    <input id="search-input" type="search" placeholder="Cerca targa, modello, sede, CID..."
+      oninput="onSearch(this.value)" onkeydown="if(event.key==='Escape')clearSearch()">
+    <div id="search-clear" onclick="clearSearch()">✕</div>
+    <div class="live-dot" id="live-dot" title="Dati live"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main">
+    <div id="tab-flotta" class="tab-content">
+      <div class="vtable-wrap">
+        <div class="vtable-header">
+          <h3>FLOTTA COMPLETA</h3>
+          <span id="vtable-count"></span>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="vtable">
+            <thead><tr>
+              <th onclick="sortBy('targa')">TARGA ⇅</th>
+              <th onclick="sortBy('modello')">MODELLO ⇅</th>
+              <th onclick="sortBy('assegnatario')">ASSEGNATARIO ⇅</th>
+              <th onclick="sortBy('sede')">SEDE ⇅</th>
+              <th>TIPO</th>
+              <th title="EasyPark">EP</th>
+              <th title="ZTL">ZTL</th>
+              <th>PIN ENI</th>
+              <th>PIN Q8</th>
+              <th id="col-act">AZIONI</th>
+            </tr></thead>
+            <tbody id="vtable-body"></tbody>
+          </table>
+        </div>
+        <div id="pagination"></div>
+      </div>
+    </div>
+    <div id="tab-mappa" class="tab-content ro"></div>
+    <div id="tab-dashboard" class="tab-content ro"></div>
+    <div id="tab-manut" class="tab-content ro"></div>
+    <div id="tab-reports" class="tab-content ro"></div>
+    <div id="tab-impost" class="tab-content ro"></div>
+    <div id="tab-ticket" class="tab-content ro"></div>
+  </div>
+
+  <!-- FAB -->
+  <div onclick="openQuickActions()" style="position:fixed;bottom:20px;right:18px;z-index:500;
+    width:48px;height:48px;border-radius:50%;background:var(--navy2);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+    box-shadow:0 4px 15px rgba(13,27,62,.4);cursor:pointer;" title="Azioni rapide">⚡</div>
+</div>
+
+<!-- OVERLAYS -->
+<!-- Menu -->
+<div class="ov" id="ov-menu" onclick="if(event.target===this)closeOv('ov-menu')">
+  <div class="ovb" style="max-width:270px;margin-top:58px;margin-right:0;margin-left:auto;">
+    <div class="ovh"><h3>Menu</h3><button class="ovc" onclick="closeOv('ov-menu')">✕</button></div>
+    <div style="padding:4px 0;">
+      <div class="sr" onclick="closeOv('ov-menu');doSync()"><div class="sri" style="background:#dbeafe;">🔄</div><div><div class="srt">Sincronizza</div><div class="srs">Aggiorna dal DB</div></div></div>
+      <div class="sr" onclick="closeOv('ov-menu');openGDrive()"><div class="sri" style="background:#d1fae5;">📂</div><div><div class="srt">Google Drive</div><div class="srs">Documenti flotta</div></div></div>
+      <div class="sr" id="mn-admin" style="display:none" onclick="closeOv('ov-menu');switchTab('impost')"><div class="sri" style="background:#ede9fe;">⚙️</div><div><div class="srt">Impostazioni Admin</div></div></div>
+      <div class="sr" onclick="doLogout()"><div class="sri" style="background:#fee2e2;">🚪</div><div><div class="srt">Esci</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Veicolo Detail -->
+<div class="ov" id="ov-veh" onclick="if(event.target===this)closeOv('ov-veh')">
+  <div class="ovb" style="max-width:560px;">
+    <div class="ovh"><h3 id="vd-title">Dettaglio Veicolo</h3><button class="ovc" onclick="closeOv('ov-veh')">✕</button></div>
+    <div class="ovbd" id="vd-body"></div>
+    <div class="ovft" id="vd-foot"></div>
+  </div>
+</div>
+
+<!-- Edit Veicolo Admin -->
+<div class="ov" id="ov-ev" onclick="if(event.target===this)closeOv('ov-ev')">
+  <div class="ovb" style="max-width:550px;">
+    <div class="ovh"><h3>✏️ Modifica — <span id="ev-tlabel">-</span></h3><button class="ovc" onclick="closeOv('ov-ev')">✕</button></div>
+    <div class="ovbd">
+      <div class="fi-row">
+        <div class="fg"><label class="fl">CID Assegnatario</label>
+          <input class="fi" id="ev-cid" maxlength="8" placeholder="CID" oninput="evOnCid(this.value)"></div>
+        <div class="fg"><label class="fl">Sede</label><input class="fi" id="ev-sede" placeholder="Sede"></div>
+      </div>
+      <div class="fi-row">
+        <div class="fg"><label class="fl">Cognome</label><input class="fi" id="ev-cogn" readonly placeholder="Auto da CID"></div>
+        <div class="fg"><label class="fl">Nome</label><input class="fi" id="ev-nome" readonly placeholder="Auto da CID"></div>
+      </div>
+      <div class="fi-row">
+        <div class="fg"><label class="fl">PIN ENI</label><input class="fi" id="ev-peni" maxlength="10" placeholder="PIN"></div>
+        <div class="fg"><label class="fl">PIN Q8</label><input class="fi" id="ev-pq8" maxlength="10" placeholder="PIN"></div>
+      </div>
+      <div class="fi-row">
+        <div class="fg"><label class="fl">Tipo Pool</label>
+          <select class="fi" id="ev-pool">
+            <option value="">— Assegnata —</option>
+            <option value="SCORTA">Scorta</option>
+            <option value="TECNICO">Tecnico</option>
+            <option value="SPECIALI">Speciali</option>
+          </select></div>
+        <div class="fg"><label class="fl">Stato</label>
+          <select class="fi" id="ev-stato">
+            <option value="Marciante">Marciante</option>
+            <option value="Officina">Officina</option>
+            <option value="Fuori servizio">Fuori servizio</option>
+          </select></div>
+      </div>
+      <div class="fg"><label class="fl">Officina</label><input class="fi" id="ev-offic" placeholder="Nome officina..."></div>
+      <div class="fg"><label class="fl">Note operative</label><textarea class="fi" id="ev-note" rows="2" placeholder="Note..."></textarea></div>
+      <div class="fg"><label class="fi-chk"><input type="checkbox" id="ev-ep"> EasyPark attivo</label></div>
+      <div class="fg">
+        <div class="fl">ZTL</div>
+        <div id="ev-ztl"></div>
+        <button class="btn btn-g" style="margin-top:5px;font-size:10px;padding:4px 8px;" onclick="evAddZtl()">+ Aggiungi ZTL</button>
+      </div>
+    </div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-ev')">Annulla</button>
+      <button class="btn btn-d" onclick="confirmDelV()">🗑 Elimina</button>
+      <button class="btn btn-p" onclick="evSave()">💾 Salva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gestione CID -->
+<div class="ov" id="ov-cid" onclick="if(event.target===this)closeOv('ov-cid')">
+  <div class="ovb" style="max-width:540px;">
+    <div class="ovh"><h3>👤 Anagrafiche CID</h3><button class="ovc" onclick="closeOv('ov-cid')">✕</button></div>
+    <div class="ovbd" style="padding:10px 0 0">
+      <div style="padding:0 16px 10px;display:flex;gap:8px;">
+        <input class="fi" id="cid-srch" placeholder="Cerca CID o cognome..." oninput="renderCidList(this.value)" style="flex:1;">
+        <button class="btn btn-p" onclick="openAddCid()" style="padding:7px 11px;font-size:11px;">+ Nuovo</button>
+      </div>
+      <div id="cid-list" style="max-height:380px;overflow-y:auto;"></div>
+    </div>
+    <div class="ovft"><button class="btn btn-g" onclick="closeOv('ov-cid')">Chiudi</button></div>
+  </div>
+</div>
+
+<!-- Edit CID singolo -->
+<div class="ov" id="ov-ecid" onclick="if(event.target===this)closeOv('ov-ecid')">
+  <div class="ovb" style="max-width:400px;">
+    <div class="ovh"><h3 id="ecid-title">👤 Nuovo CID</h3><button class="ovc" onclick="closeOv('ov-ecid')">✕</button></div>
+    <div class="ovbd">
+      <div class="fg"><label class="fl">CID (matricola)</label><input class="fi" id="ec-cid" maxlength="8" placeholder="08412345" inputmode="numeric"></div>
+      <div class="fi-row">
+        <div class="fg"><label class="fl">Cognome</label><input class="fi" id="ec-cogn" placeholder="Cognome"></div>
+        <div class="fg"><label class="fl">Nome</label><input class="fi" id="ec-nome" placeholder="Nome"></div>
+      </div>
+      <div class="fg"><label class="fl">Email</label><input class="fi" id="ec-email" type="email" placeholder="email@fibercop.it"></div>
+      <div class="fg"><label class="fl">PIN (4 cifre)</label><input class="fi" id="ec-pin" maxlength="4" placeholder="0000" inputmode="numeric"></div>
+    </div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-ecid')">Annulla</button>
+      <button class="btn btn-d" id="ec-del" onclick="deleteCid()" style="display:none">🗑</button>
+      <button class="btn btn-p" onclick="saveCid()">💾 Salva</button>
+    </div>
+  </div>
+</div>
+
+<!-- Report Segnalazione -->
+<div class="ov" id="ov-rep" onclick="if(event.target===this)closeOv('ov-rep')">
+  <div class="ovb" style="max-width:490px;">
+    <div class="ovh"><h3 id="rep-title">📋 Segnalazione</h3><button class="ovc" onclick="closeOv('ov-rep')">✕</button></div>
+    <div class="ovbd" id="rep-body"></div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-rep')">Annulla</button>
+      <button class="btn btn-p" id="rep-send" onclick="sendReport()" style="display:none">📤 Invia</button>
+    </div>
+  </div>
+</div>
+
+<!-- Swap -->
+<div class="ov" id="ov-swap" onclick="if(event.target===this)closeOv('ov-swap')">
+  <div class="ovb" style="max-width:450px;">
+    <div class="ovh"><h3>🔀 Swap Rapido</h3><button class="ovc" onclick="closeOv('ov-swap')">✕</button></div>
+    <div class="ovbd">
+      <div class="fg"><label class="fl">Veicolo A (da)</label><input class="fi" id="sw-a" placeholder="Targa A" oninput="this.value=this.value.toUpperCase()"></div>
+      <div class="fg"><label class="fl">Veicolo B (a)</label><input class="fi" id="sw-b" placeholder="Targa B" oninput="this.value=this.value.toUpperCase()"></div>
+      <div class="fg"><label class="fl">Note</label><input class="fi" id="sw-note" placeholder="Motivazione..."></div>
+    </div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-swap')">Annulla</button>
+      <button class="btn btn-w" onclick="doSwap()">🔀 Esegui Swap</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm -->
+<div class="ov" id="ov-conf" onclick="if(event.target===this)closeOv('ov-conf')">
+  <div class="ovb" style="max-width:360px;margin-top:130px;">
+    <div class="ovh" style="background:#991b1b;"><h3 id="conf-t">Conferma</h3><button class="ovc" onclick="closeOv('ov-conf')">✕</button></div>
+    <div class="ovbd"><p id="conf-msg" style="font-size:13px;"></p></div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-conf')">Annulla</button>
+      <button class="btn btn-d" id="conf-ok">Conferma</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="ov" id="ov-qa" onclick="if(event.target===this)closeOv('ov-qa')">
+  <div class="ovb" style="position:fixed;bottom:0;left:0;right:0;max-width:100%;border-radius:14px 14px 0 0;margin:0;">
+    <div class="ovh"><h3>⚡ Azioni Rapide</h3><button class="ovc" onclick="closeOv('ov-qa')">✕</button></div>
+    <div id="qa-body" style="padding:4px 0;"></div>
+  </div>
+</div>
+
+<!-- QR Scanner -->
+<div class="ov" id="ov-qr" onclick="if(event.target===this)closeQR()">
+  <div class="ovb" style="max-width:400px;">
+    <div class="ovh"><h3>📷 Scanner QR</h3><button class="ovc" onclick="closeQR()">✕</button></div>
+    <div class="ovbd" style="text-align:center;">
+      <video id="qr-video" style="width:100%;border-radius:var(--radius);background:#000;max-height:280px;" playsinline autoplay></video>
+      <p id="qr-status" style="margin-top:8px;font-size:11px;color:var(--muted);">Puntare al QR code del veicolo</p>
+    </div>
+  </div>
+</div>
+
+<!-- Documenti PDF -->
+<div class="ov" id="ov-docs" onclick="if(event.target===this)closeOv('ov-docs')">
+  <div class="ovb" style="max-width:500px;">
+    <div class="ovh"><h3>📄 Documenti — <span id="docs-targa">-</span></h3><button class="ovc" onclick="closeOv('ov-docs')">✕</button></div>
+    <div class="ovbd" id="docs-body"></div>
+    <div class="ovft">
+      <button class="btn btn-g" onclick="closeOv('ov-docs')">Chiudi</button>
+      <button class="btn btn-p" onclick="openGDrive()">📂 Apri Drive</button>
+    </div>
+  </div>
+</div>
+
+<!-- JS — ordine di caricamento obbligatorio -->
+<script src="js/config.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/db.js"></script>
+<script src="js/state.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+<script src="js/fleet.js"></script>
+<script src="js/vehicle.js"></script>
+<script src="js/cid.js"></script>
+<script src="js/report.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/settings.js"></script>
+
+</body>
+</html>
